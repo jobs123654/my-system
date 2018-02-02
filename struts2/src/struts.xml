@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.devMode" value="true" />
+     <constant name="struts.i18n.encoding" value="utf-8"></constant>
+    <constant name="" value=""></constant>
+    <package name="User" namespace="/" extends="struts-default">
+           
+         <global-results>
+          <result name="error">/jsp/error.jsp</result>
+         </global-results>
+         
+          <action name="user*" method="{1}" class="com.model.User">
+           <result name="register_ok" type="redirect">index.jsp</result>
+           <result name="login_ok" type="redirect">/jsp/home.jsp</result>
+           <result name="login_ok_u" type="redirect">/jsp/uhome.jsp</result>
+         </action>
+         
+     </package>
+     <package name="Product" namespace="/" extends="struts-default">
+           
+         <global-results>
+          <result name="error">/jsp/error.jsp</result>
+         </global-results>
+         
+          <action name="pro*" method="{1}" class="com.model.Product">
+          
+          
+          <result name="show_list">/jsp/product1.jsp</result>
+           <result name="show_list_u">/jsp/product.jsp</result>
+            <result name="add_ok" >/jsp/product.jsp</result>
+            
+             <result name="delete">/jsp/product1.jsp</result>
+             <result name="info">/jsp/info.jsp</result>
+             <result name="update">/jsp/update.jsp</result>
+              <result name="result">/jsp/result.jsp</result>
+             <result name="showAdd">/jsp/add_product.jsp</result>
+         </action>
+         
+          
+        <action name="c*" method="{1}" class="com.model.Classify">
+          
+          
+            <result name="show_list">/jsp/classify.jsp</result>
+            <result name="update">/jsp/cupdate.jsp</result>
+            <result name="delete" type="redirect">/jsp/classify.jsp</result>
+            <result name="o_error">/jsp/o_error.jsp</result>
+             <result name="result">/jsp/result.jsp</result>
+            
+         </action>
+         
+         <action name="u*" method="{1}" class="com.model.User">
+          
+            <result name="login">index.jsp</result>
+            <result name="show_list">/jsp/user.jsp</result>
+            <result name="update">/jsp/cupdate.jsp</result>
+            <result name="delete">/jsp/user.jsp</result>
+            <result name="r_ok">/jsp/myrequest.jsp</result>
+            <result name="o_error">/jsp/o_error.jsp</result>
+            <result name="edit">/jsp/edit.jsp</result>
+            <result name="edit_ok">/jsp/success.jsp</result>
+         
+           
+            
+         </action>
+         <action name="r*" method="{1}" class="com.model.Request">
+          
+           
+            <result name="show_list">/jsp/request.jsp</result>
+            <result name="request">/jsp/crequest.jsp</result>
+            <result name="r_ok">/jsp/success.jsp</result>
+            <result name="o_error">/jsp/o_error.jsp</result>
+             <result name="search_ok">/jsp/request_result.jsp</result>
+            
+            
+         </action>
+          <action name="d*" method="{1}" class="com.model.DamageRegistration">
+          
+           
+            <result name="list">/jsp/dlist.jsp</result>
+           
+          
+           
+           
+            <result name="update">/jsp/dupdate.jsp</result>
+           
+           
+            <result name="r_ok">/jsp/success.jsp</result>
+           
+            <result name="o_error">/jsp/o_error.jsp</result>
+            
+            
+            
+         </action>
+          <action name="backups" method="Backups" class="com.tool.Tool">
+          
+           
+            <result name="ok">/jsp/backups.jsp</result>
+          
+            
+         </action>
+         
+     </package>
+    <!-- Add packages here -->
+
+</struts>
