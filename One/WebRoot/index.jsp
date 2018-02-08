@@ -3,24 +3,58 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
-  <head>
-    <base href="<%=basePath%>">
-    
-    <title>Spring</title>
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-  </head>
-  
-  <body>
-     <br>
-  </body>
+<head>
+  <base href="<%=basePath%>">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/login.css" type="text/css" rel="stylesheet" />
+<script src="js/jquery-1.11.1.js"></script>
+<title>万众保险业务员端</title>
+</head>
+<body>
+  <div class="box1">
+    <div class="box2">
+      <h1>万众保险业务员端</h1>
+      <form action="ulogin" method="post">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="30%" align="right">工号：</td>
+    <td width="40%"><input name="user.useNumber" type="text" class="box_inp1"/></td>
+    <td width="30%"></td>
+  </tr>
+  <tr>
+    <td align="right">密码：</td>
+    <td><input name="user.userPassword" type="password" class="box_inp1"/></td>
+    <td><input name="user.isRemember" type="checkbox" value="" style="float:left; display:inline; margin-top:9px; margin-right:3px"/>&nbsp;记住密码</td>
+  </tr>
+ 
+   
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" name="button" id="button" value="提交" class="subbtm"/></td>
+     <td><input type="button" name="register" id="register" value="注册" class="subbtm"/></td>
+    <td>&nbsp;</td>
+     <td>&nbsp;</td>
+  </tr>
+  <tr id="tish" style="display: none;">
+  <td></td>
+  <td>请持有效证件去现场办理</td>
+  </tr>
+</table>
+      </form>
+    </div>
+    </div>
+<script type="text/javascript">
+
+$('#register').click(function(){
+
+   $("#tish").show();
+   setTimeout(function() {
+   	  $("#tish").hide();
+   }, 3000)
+});
+</script>
+</body>
+
 </html>

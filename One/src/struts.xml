@@ -11,7 +11,9 @@
     
     
     <package name="base" namespace="/" extends="struts-default">
-          <action name="u*" method="{1}"  class="com.service.UserService">   
+          <action name="u*" method="{1}"  class="com.action.UserSerive">
+           <result name="login">view/index.jsp</result>   
+             <result name="error">index.jsp</result>   
           </action>
     </package>
     

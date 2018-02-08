@@ -27,6 +27,7 @@
 	<property name="hbm2ddl.auto">validate</property>
 
 	<mapping class="com.entity.User" />
+	
 	<mapping class="com.entity.InsuranceExchange"/>
 </session-factory>
 
