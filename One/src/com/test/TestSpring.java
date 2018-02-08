@@ -14,7 +14,7 @@ public class TestSpring {
 
 	@Test
 	public void test() {
-		ApplicationContext applicationContext=new ClassPathXmlApplicationContext("config1.xml");
+		ApplicationContext applicationContext=new ClassPathXmlApplicationContext("config2.xml");
 		
 		User user=(User)applicationContext.getBean("user");
 		
