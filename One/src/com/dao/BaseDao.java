@@ -11,13 +11,14 @@ import com.entity.BaseEntity;
 import com.entity.InsuranceExchange;
 import com.entity.User;
 import com.tool.HibernateSessionFactory;
+import com.tool.MainLoad;
 import com.tool.Tool;
 public class BaseDao {
 	protected static Session session;
 	 protected static Transaction transaction;
 	 
 	 static{
-		 session=HibernateSessionFactory.getSession();
+		 session=MainLoad.getSession();
 	 }
 	 public static Boolean isAdd(BaseEntity baseEntity)
 	 {

@@ -2,8 +2,12 @@ package com.action;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.Session;
+
 import com.entity.BaseEntity;
+import com.entity.InsuranceExchange;
 import com.opensymphony.xwork2.ActionSupport;
+import com.tool.HibernateSessionFactory;
 import com.tool.Tool;
 import com.dao.BaseDao;
 public class BaseAction  extends ActionSupport{
@@ -11,12 +15,17 @@ public class BaseAction  extends ActionSupport{
 	 * http://localhost:8080/safe/udeleteEmployee?user.useNumber=1
 	 */
 	private static final long serialVersionUID = 1L;
-	protected static HttpServletResponse response;
+	
    
-
-	static{
-		 response=Tool.getHttpServletResponse();
+    private static Session session=HibernateSessionFactory.getSession();
+    
+	public static Session getSession() {
+		return session;
 	}
+	public static void setSession(Session session) {
+		BaseAction.session = session;
+	}
+	
 	protected BaseEntity baseEntity;
 	
 	public BaseEntity getBaseEntity() {
@@ -33,9 +42,9 @@ public class BaseAction  extends ActionSupport{
     		 try {
     			if(BaseDao.isAdd(baseEntity))
     			{
-    				response.getOutputStream().write(("1").getBytes());	
+    			
     			}else{
-    				response.getOutputStream().write(("0").getBytes());
+    				
     			}
     			 	
 			} catch (Exception e) {
@@ -50,9 +59,9 @@ public class BaseAction  extends ActionSupport{
 		 try {
 			if(BaseDao.delete(baseEntity))
 			{
-				response.getOutputStream().write(("1").getBytes());	
+				
 			}else{
-				response.getOutputStream().write(("0").getBytes());
+				
 			}
 			 	
 		} catch (Exception e) {
@@ -70,9 +79,9 @@ public class BaseAction  extends ActionSupport{
 		 try {
 			if(BaseDao.update(baseEntity))
 			{
-				response.getOutputStream().write(("1").getBytes());	
+				
 			}else{
-				response.getOutputStream().write(("0").getBytes());
+				
 			}
 			 	
 		} catch (Exception e) {

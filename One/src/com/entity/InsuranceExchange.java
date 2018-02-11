@@ -22,6 +22,8 @@ public class InsuranceExchange implements  BaseEntity{
 	    private int enjoySex;//性别
 	    private String  enjoyEmail;//邮箱
 	   
+//	    投保人
+	    
 	    private String orderCardNumber;//证件号码 
 	    private String orderName;//姓名
 	    private String orderCardType;//证件类型
@@ -33,6 +35,7 @@ public class InsuranceExchange implements  BaseEntity{
 	    private String useNumber;//员工号
 	    
 	    private String createTime;//创建时间
+	    
 	    
 	    public String getCreateTime() {
 		return createTime;

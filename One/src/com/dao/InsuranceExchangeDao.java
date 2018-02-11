@@ -6,6 +6,7 @@ import org.hibernate.query.Query;
 
 import com.entity.BaseEntity;
 import com.entity.InsuranceExchange;
+import com.tool.Tool;
 
 public class InsuranceExchangeDao extends BaseDao{
 	
@@ -21,23 +22,28 @@ public class InsuranceExchangeDao extends BaseDao{
 		 
 		 InsuranceExchange  insured=(InsuranceExchange )baseEntity;
 		 InsuranceExchange i=BaseDao.session.get(InsuranceExchange .class,insured.getId());
-		 i.setOrderBirthday(insured.getOrderBirthday());
-         i.setOrderCardNumber(insured.getOrderCardNumber());
-         i.setOrderCardType(insured.getEnjoyCardType());
-         i.setOrderEmail(insured.getOrderEmail());
-         i.setOrderName(insured.getOrderName());
-         i.setOrderSex(insured.getOrderSex());
-         
-		 i.setEnjoyBirthday(insured.getEnjoyBirthday());
-		 i.setEnjoyCardNumber(insured.getEnjoyCardNumber());
-		 i.setEnjoyCardType(insured.getEnjoyCardType());
-		 i.setEnjoyEmail(insured.getEnjoyEmail());
-		 i.setEnjoyLink(insured.getEnjoyLink());
-		 i.setEnjoyName(insured.getEnjoyName());
-		 i.setEnjoySex(insured.getEnjoySex());
-		 i.setXianEndDate(insured.getXianEndDate());
-		 i.setXianName(insured.getXianName());
-		 i.setXianStartDate(insured.getXianStartDate());
+		if(i!=null&&insured!=null)
+		{
+			 i.setOrderBirthday(insured.getOrderBirthday());
+	         i.setOrderCardNumber(insured.getOrderCardNumber());
+	         i.setOrderCardType(insured.getOrderCardType());
+	         i.setOrderEmail(insured.getOrderEmail());
+	         i.setOrderName(insured.getOrderName());
+	         i.setOrderSex(insured.getOrderSex());
+	         
+			 i.setEnjoyBirthday(insured.getEnjoyBirthday());
+			 i.setEnjoyCardNumber(insured.getEnjoyCardNumber());
+			 i.setEnjoyCardType(insured.getEnjoyCardType());
+			 i.setEnjoyEmail(insured.getEnjoyEmail());
+			 i.setEnjoyLink(insured.getEnjoyLink());
+			 i.setEnjoyName(insured.getEnjoyName());
+			 i.setEnjoySex(insured.getEnjoySex());
+			 i.setXianEndDate(insured.getXianEndDate());
+			 i.setXianName(insured.getXianName());
+			 i.setXianStartDate(insured.getXianStartDate());
+			 i.setCreateTime(insured.getCreateTime());
+			 i.setUseNumber(insured.getUseNumber());
+		}
       return BaseDao.isUpdate(i);
 	 }
 //	 删除

@@ -12,9 +12,19 @@
     
     <package name="base" namespace="/" extends="struts-default">
           <action name="u*" method="{1}"  class="com.action.UserSerive">
-           <result name="login">view/index.jsp</result>   
-             <result name="error">index.jsp</result>   
+            <result name="login">view/index.jsp</result>   
+             <result name="error" type="redirect">index.jsp</result>   
+             
           </action>
+          
+           <action name="i*" method="{1}" class="com.action.InsuranceExchangeService">
+           <result name="show">view/showInsuranceExchange.jsp</result>
+            <result name="result">view/InsuranceExchangeResult.jsp</result>
+              <result name="update">view/updateInsuranceExchange.jsp</result>
+              <result name="info">view/InsuranceExchangeInfo.jsp</result>
+
+         </action>
+         
     </package>
     
     

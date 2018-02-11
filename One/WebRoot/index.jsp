@@ -1,3 +1,5 @@
+<%@page import="com.tool.Tool"%>
+<%@page import="com.entity.User"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
@@ -13,6 +15,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>万众保险业务员端</title>
 </head>
 <body>
+<%
+User user=new User();
+
+Cookie []cookies=Tool.getHttpServletRequest().getCookies();
+
+for(Cookie c:cookies)
+{
+  if(c.getName().equals("number"))
+  {
+    user.setUseNumber(c.getValue());
+  }
+  if(c.getName().equals("password"))
+  {
+    user.setUserPassword(c.getValue());
+  }
+}
+
+ %>
   <div class="box1">
     <div class="box2">
       <h1>万众保险业务员端</h1>
@@ -20,13 +40,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td width="30%" align="right">工号：</td>
-    <td width="40%"><input name="user.useNumber" type="text" class="box_inp1"/></td>
+    <td width="40%"><input name="user.useNumber" type="text" value="<%=user.getUseNumber()==null?"":user.getUseNumber() %>" class="box_inp1"/></td>
     <td width="30%"></td>
   </tr>
   <tr>
     <td align="right">密码：</td>
-    <td><input name="user.userPassword" type="password" class="box_inp1"/></td>
-    <td><input name="user.isRemember" type="checkbox" value="" style="float:left; display:inline; margin-top:9px; margin-right:3px"/>&nbsp;记住密码</td>
+    <td><input name="user.userPassword" type="password" value="<%=user.getUserPassword() ==null?"":user.getUserPassword() %>"  class="box_inp1"/></td>
+    <td><input name="user.isRemember" id="re" type="checkbox"  
+    style="float:left; display:inline; margin-top:9px; margin-right:3px"/>
+    &nbsp;记住密码</td>
   </tr>
  
    
@@ -46,6 +68,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     </div>
 <script type="text/javascript">
+
+
 
 $('#register').click(function(){
 

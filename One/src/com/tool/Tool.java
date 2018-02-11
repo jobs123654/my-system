@@ -7,13 +7,18 @@ import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.enterprise.inject.New;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
+import org.hibernate.Session;
 
 import com.dao.InsuranceExchangeDao;
 import com.entity.InsuranceExchange;
+
+import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,7 +31,8 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.CellRangeAddress;
 public class Tool {
-
+    private static HttpSession httpSession; 
+    
 	public static HttpServletRequest getHttpServletRequest()
 	{
 		return ServletActionContext.getRequest();
@@ -34,6 +40,12 @@ public class Tool {
 	public static HttpServletResponse getHttpServletResponse()
 	{
 		return ServletActionContext.getResponse();
+	}
+	public static HttpSession getHttpSession()
+	{
+	
+		httpSession=getHttpServletRequest().getSession();
+		return httpSession;
 	}
 	 /**  
      * 全局数组  
@@ -205,6 +217,13 @@ public class Tool {
      }else{
     	 System.out.println("@@@@@@@@@@@@@@@@@@@@@不存在");
      }
+   }
+   
+//   获取时间
+   
+   public static String getTime()
+   {
+	   return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
    }
     
 }
