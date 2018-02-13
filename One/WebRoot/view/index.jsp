@@ -26,6 +26,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             text-decoration:none;
           color: #5bc0de;
         }
+        a:visited{
+          color: #ccc;
+        }
         .center:first-child,header,footer{
             background-color: #3c7fb5;
         }
@@ -52,7 +55,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             width: 100%;
             height: 100%;
         }
-
+ .sib{
+ font-size:1.5em
+ }
+ .son a{
+ font-size:1.1em
+ }
     </style>
 </head>
 <body>
@@ -79,15 +87,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!--侧栏-->
         <div  id="cl" class="col-md-2 pull-left center row" >
             <ul id="celan"  class="col-md-8  center-block" style="text-align: center;vertical-align: center;margin-top: 40%">
-                <li><a href="#" onclick="return false" class="sib"> 保险管理 <span>> </span></a>
+                <li ><a href="#" onclick="return false" class="btn sib"> 保险管理 <span>+ </span></a>
 
                     <ul class="son">
-                        <li> <a href="#" onclick="return false">保险名录</a></li>
-                        <li><a href="#" onclick="return false">业务数据</a></li>
-                        <li><a href="#" onclick="return false">备注</a></li>
+                        <li > <a class="btn" href="#" onclick="return false">保险名录</a></li>
+                        <li ><a class="btn"href="#" onclick="return false">业务数据</a></li>
+                        
                     </ul>
                 </li>
-                <li><a onclick="return false" href="#" class="sib">员工管理 <span>  ></span></a>
+                <%-- <li><a onclick="return false" href="#" class="sib">员工管理 <span>  ></span></a>
 
                     <ul class="son">
                         <li><a  onclick="return false"href="#">11111111</a></li>
@@ -102,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <li><a href="#"onclick="return false">11111111</a></li>
                         <li><a href="#"onclick="return false">11111111</a></li>
                     </ul>
-                </li>
+                </li> --%>
 
 
             </ul>
@@ -110,9 +118,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <!--主面板-->
        
-            <iframe  class="col-md-10 pull-right center" id="main" src="view/showInsurance.jsp"></iframe>
+            <iframe  class="col-md-10 pull-right center" id="main" src="view/welcome.jsp"></iframe>
 
-       
     </div>
     <div class="row">
         <footer class="col-md-12"></footer>

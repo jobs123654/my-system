@@ -133,45 +133,54 @@ public class Tool {
  	   HSSFRow row16=sheet.createRow(17);
  	  HSSFRow row17=sheet.createRow(18);
  	  HSSFRow row18=sheet.createRow(19);
+ 	 HSSFRow row19=sheet.createRow(20);
+ 	 HSSFRow row20=sheet.createRow(21);
+ 	 
  	  row1.createCell(8).setCellValue("投保人姓名");
  	  row2.createCell(8).setCellValue("证件类型");
  	  row3.createCell(8).setCellValue("证件号码");
  	  row4.createCell(8).setCellValue("出生日期");
  	  row5.createCell(8).setCellValue("投保人性别");
- 	  row6.createCell(8).setCellValue("投保人邮箱");
+ 	  row6.createCell(8).setCellValue("投保人手机号");
+ 	 row7.createCell(8).setCellValue("投保人邮箱");
+ 	  row8.createCell(8).setCellValue("被保人姓名");
+ 	  row9.createCell(8).setCellValue("证件类型");
+ 	  row10.createCell(8).setCellValue("证件号码");
+ 	  row11.createCell(8).setCellValue("出生日期");
+ 	  row12.createCell(8).setCellValue("被保人性别");
+ 	  row13.createCell(8).setCellValue("被保人手机号");
+ 	  row14.createCell(8).setCellValue("被保人邮箱");
  	  
- 	  row7.createCell(8).setCellValue("被保人姓名");
- 	  row8.createCell(8).setCellValue("证件类型");
- 	  row9.createCell(8).setCellValue("证件号码");
- 	  row10.createCell(8).setCellValue("出生日期");
- 	  row11.createCell(8).setCellValue("被保人性别");
- 	  row12.createCell(8).setCellValue("被保人邮箱");
- 	  row13.createCell(8).setCellValue("保险名称");
- 	  row14.createCell(8).setCellValue("开始日期");
- 	  row15.createCell(8).setCellValue("结束日期");
- 	  row16.createCell(8).setCellValue("与投保人关系");
+ 	  row15.createCell(8).setCellValue("保险名称");
+ 	  row16.createCell(8).setCellValue("开始日期");
+ 	  row17.createCell(8).setCellValue("结束日期");
+ 	  row18.createCell(8).setCellValue("与投保人关系");
  	  
- 	   row17.createCell(8).setCellValue("员工号");
- 	   row18.createCell(8).setCellValue("创建时间");
+ 	   row19.createCell(8).setCellValue("员工号");
+ 	   row20.createCell(8).setCellValue("创建时间");
  	  
  	  row1.createCell(10).setCellValue(insuranceExchange.getOrderName());
+ 	  
  	  row2.createCell(10).setCellValue(insuranceExchange.getOrderCardType());
  	  row3.createCell(10).setCellValue(insuranceExchange.getOrderCardNumber());
  	  row4.createCell(10).setCellValue(insuranceExchange.getOrderBirthday());
- 	  row5.createCell(10).setCellValue(insuranceExchange.getOrderSex());
- 	  row6.createCell(10).setCellValue(insuranceExchange.getOrderEmail());
- 	  row7.createCell(10).setCellValue(insuranceExchange.getEnjoyName());
- 	  row8.createCell(10).setCellValue(insuranceExchange.getEnjoyCardType());
- 	  row9.createCell(10).setCellValue(insuranceExchange.getEnjoyCardNumber());
- 	  row10.createCell(10).setCellValue(insuranceExchange.getEnjoyBirthday());
- 	  row11.createCell(10).setCellValue(insuranceExchange.getEnjoySex());
- 	  row12.createCell(10).setCellValue(insuranceExchange.getEnjoyEmail());
- 	  row13.createCell(10).setCellValue(insuranceExchange.getXianName());
- 	  row14.createCell(10).setCellValue(insuranceExchange.getXianStartDate());
- 	  row15.createCell(10).setCellValue(insuranceExchange.getXianEndDate());
- 	  row16.createCell(10).setCellValue(insuranceExchange.getEnjoyLink());
- 	 row17.createCell(10).setCellValue(insuranceExchange.getUseNumber());
- 	 row18.createCell(10).setCellValue(insuranceExchange.getCreateTime());
+ 	  row5.createCell(10).setCellValue(insuranceExchange.getOrderSex()==0?"男":"女");
+ 	  row6.createCell(10).setCellValue(insuranceExchange.getOrderNumber());
+ 	  row7.createCell(10).setCellValue(insuranceExchange.getOrderEmail());
+ 	 
+ 	  row8.createCell(10).setCellValue(insuranceExchange.getEnjoyName());
+ 	  row9.createCell(10).setCellValue(insuranceExchange.getEnjoyCardType());
+ 	  row10.createCell(10).setCellValue(insuranceExchange.getEnjoyCardNumber());
+ 	  row11.createCell(10).setCellValue(insuranceExchange.getEnjoyBirthday());
+ 	  row12.createCell(10).setCellValue(insuranceExchange.getEnjoySex()==0?"男":"女");
+ 	 row13.createCell(10).setCellValue(insuranceExchange.getEnjoyNumber());
+ 	  row14.createCell(10).setCellValue(insuranceExchange.getEnjoyEmail());
+ 	  row15.createCell(10).setCellValue(insuranceExchange.getXianName());
+ 	  row16.createCell(10).setCellValue(insuranceExchange.getXianStartDate());
+ 	  row17.createCell(10).setCellValue(insuranceExchange.getXianEndDate());
+ 	  row18.createCell(10).setCellValue(insuranceExchange.getEnjoyLink());
+ 	 row19.createCell(10).setCellValue(insuranceExchange.getUseNumber());
+ 	 row20.createCell(10).setCellValue(insuranceExchange.getCreateTime());
  	   //输出Excel文件  
  	   FileOutputStream output=null;
  	try {

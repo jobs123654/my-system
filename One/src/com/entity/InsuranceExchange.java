@@ -14,12 +14,14 @@ public class InsuranceExchange implements  BaseEntity{
 	    private String xianName; //保险名称
 		private String xianStartDate; //开始日期
 	    private String xianEndDate; //结束日期
+//	    被保人
 	    private String enjoyLink;   //与投保人关系
 	    private String  enjoyName;  //姓名
 	    private String  enjoyCardType; //证件类型
 	    private String   enjoyCardNumber;//证件号码
 	    private String  enjoyBirthday;//出生日期
 	    private int enjoySex;//性别
+	    private String enjoyNumber;//手机
 	    private String  enjoyEmail;//邮箱
 	   
 //	    投保人
@@ -31,11 +33,24 @@ public class InsuranceExchange implements  BaseEntity{
 	    private String orderBirthday;//出生日期
 	    private int orderSex;//性别
 	    private String orderEmail;//邮箱
+	    private String orderNumber;
 	    
-	    private String useNumber;//员工号
+	    
+	    public String getEnjoyNumber() {
+			return enjoyNumber;
+		}
+		public void setEnjoyNumber(String enjoyNumber) {
+			this.enjoyNumber = enjoyNumber;
+		}
+		public String getOrderNumber() {
+			return orderNumber;
+		}
+		public void setOrderNumber(String orderNumber) {
+			this.orderNumber = orderNumber;
+		}
+		private String useNumber;//员工号
 	    
 	    private String createTime;//创建时间
-	    
 	    
 	    public String getCreateTime() {
 		return createTime;

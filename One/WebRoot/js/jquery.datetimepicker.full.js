@@ -1111,7 +1111,7 @@ var DateFormatter;
 		},
 		value: '',
 		rtl: false,
-
+//配置
 		format:	'Y/m/d H:i',
 		formatTime:	'H:i',
 		formatDate:	'Y/m/d',

@@ -43,6 +43,8 @@ public class InsuranceExchangeDao extends BaseDao{
 			 i.setXianStartDate(insured.getXianStartDate());
 			 i.setCreateTime(insured.getCreateTime());
 			 i.setUseNumber(insured.getUseNumber());
+			 i.setEnjoyNumber(insured.getEnjoyNumber());
+			 i.setOrderNumber(insured.getOrderNumber());
 		}
       return BaseDao.isUpdate(i);
 	 }

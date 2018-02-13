@@ -91,7 +91,7 @@ public class InsuranceExchangeService extends BaseAction {
 			User user=(User) Tool.getHttpServletRequest().getSession().getAttribute("user");
 			insuranceExchange.setUseNumber(user.getUseNumber());
 			baseEntity=insuranceExchange;
-
+            Tool.createExcel(insuranceExchange,true);
 			super.add();
 		return show();
 		}
@@ -109,7 +109,8 @@ public class InsuranceExchangeService extends BaseAction {
 			
 			if(insuranceExchange.getXianName()!=null)
 			{
-				BaseAction.getSession().clear();
+				System.out.println("--------------------------------"+insuranceExchange.getEnjoyNumber());
+				
 				baseEntity=insuranceExchange;
 				Tool.createExcel(insuranceExchange,false);
 				try {
@@ -122,7 +123,7 @@ public class InsuranceExchangeService extends BaseAction {
 				}
 				return show();
 			}
-			System.out.println("----------------------------"+insuranceExchange.getId());
+			
 			   insuranceExchange=(InsuranceExchange)BaseAction.getSession().get(InsuranceExchange.class, insuranceExchange.getId());
 			    return "update";
 		}

@@ -85,7 +85,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   <label>  <s:property value="insuranceExchange.orderSex==0?'男':'女'"/></label>
                 
                   </td>
-            </tr>  <tr>
+            </tr> 
+             <tr>
+                <td>  手机号:</td>
+                
+                
+                <td>    
+                   <label>  <s:property value="insuranceExchange.orderNumber"/></label>
+            </td>
+            </tr>
+ 
+             <tr>
                 <td>  邮箱:</td>
                 
                 
@@ -133,6 +143,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </td>
             </tr> 
+             <tr>
+                <td>  手机号:</td>
+                
+                
+                <td>    
+                   <label>  <s:property value="insuranceExchange.enjoyNumber"/></label>
+            </td>
+            </tr>
+ 
              <tr>
                 <td> 邮箱:</td>
                 <td> 

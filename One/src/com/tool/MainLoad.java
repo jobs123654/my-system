@@ -49,21 +49,21 @@ public class MainLoad implements ServletContextListener{
 			user.setUseNumber("123");
 			Session.save(user);
 			
-			InsuranceExchange i1=new InsuranceExchange();
-			i1.setOrderName("one1");
-			InsuranceExchange i2=new InsuranceExchange();
-			i2.setOrderName("one2");
-			InsuranceExchange i3=new InsuranceExchange();
-			i3.setOrderName("one3");
-			InsuranceExchange i4=new InsuranceExchange();
-			i4.setOrderName("one4");
-			InsuranceExchange i5=new InsuranceExchange();
-			i5.setOrderName("one5");
-			InsuranceExchange i6=new InsuranceExchange();
-			i6.setOrderName("one6");
-			Session.save(i1);			Session.save(i2);
-			Session.save(i3);			Session.save(i4);
-			Session.save(i5);			Session.save(i6);
+//			InsuranceExchange i1=new InsuranceExchange();
+//			i1.setOrderName("one1");
+//			InsuranceExchange i2=new InsuranceExchange();
+//			i2.setOrderName("one2");
+//			InsuranceExchange i3=new InsuranceExchange();
+//			i3.setOrderName("one3");
+//			InsuranceExchange i4=new InsuranceExchange();
+//			i4.setOrderName("one4");
+//			InsuranceExchange i5=new InsuranceExchange();
+//			i5.setOrderName("one5");
+//			InsuranceExchange i6=new InsuranceExchange();
+//			i6.setOrderName("one6");
+//			Session.save(i1);			Session.save(i2);
+//			Session.save(i3);			Session.save(i4);
+//			Session.save(i5);			Session.save(i6);
 			transaction.commit();
 		} catch (Exception e) {
 			// TODO: handle exception

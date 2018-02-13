@@ -74,6 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            <th>证件号码</th>
            <th>出生日期</th>
            <th>性别</th>
+            <th>手机号</th>
            <th>邮箱</th>
            
            
@@ -111,6 +112,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               女
               </s:else>
               </td>
+                <td><s:property value="orderNumber"/></td>
               <td><s:property value="orderEmail"/></td>
               
              

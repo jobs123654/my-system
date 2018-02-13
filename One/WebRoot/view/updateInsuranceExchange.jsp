@@ -131,7 +131,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 
                 
                   </td>
-            </tr>  <tr>
+            </tr>
+            <tr>
+                <td>  手机号:</td>
+                <td>    <input type="text" class="form-control"name="insuranceExchange.orderNumber"  value='<s:property value="insuranceExchange.orderNumber"/>'/></td>
+            </tr>
+              <tr>
                 <td>  邮箱:</td>
                 <td>    <input type="text" class="form-control"name="insuranceExchange.orderEmail"  value='<s:property value="insuranceExchange.orderEmail"/>'/></td>
             </tr>
@@ -223,6 +228,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 
 
 </td>
+            </tr>
+             <tr>
+                <td>  手机号:</td>
+                <td>    <input type="text" class="form-control"name="insuranceExchange.enjoyNumber"  value='<s:property value="insuranceExchange.enjoyNumber"/>'/></td>
             </tr> 
              <tr>
                 <td> 邮箱:</td>
@@ -256,6 +265,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="js/index.js"></script>
 <script src="js/index1.js"></script>
 
+<script type="text/javascript">
+$('#birthday1,#birthday,#startdate,#enddate').datetimepicker({
+
+    lang:"ch", //语言选择中文 注：旧版本 新版方法：$.datetimepicker.setLocale('ch');
+    format:"Y-m-d",      //格式化日期
+    timepicker:false,    //关闭时间选项
+    yearStart:1950,     //设置最小年份
+    yearEnd:2050,        //设置最大年份
+    todayButton:false  //关闭选择今天按钮
+});
+</script>
 </div>
 </body>
 </html>

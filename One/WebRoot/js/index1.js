@@ -16,7 +16,7 @@ e.datetimepicker({
     lang:"ch", //语言选择中文 注：旧版本 新版方法：$.datetimepicker.setLocale('ch');
     format:"Y-m-d",      //格式化日期
     timepicker:false,    //关闭时间选项
-    yearStart:2000,     //设置最小年份
+    yearStart:1950,     //设置最小年份
     yearEnd:2050,        //设置最大年份
     todayButton:false    //关闭选择今天按钮
 

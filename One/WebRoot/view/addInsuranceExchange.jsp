@@ -9,6 +9,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
  <base href="<%=basePath%>">
     <meta charset="UTF-8">
+    <meta http-equiv="pragma" content="no-cache"> 
+
+     <meta http-equiv="cache-control" content="no-cache"> 
+
+     <meta http-equiv="expires" content="0">   
     <title>万众保险业务员端</title>
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/jquery.datetimepicker.css">
@@ -87,6 +92,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <label>女</label>
                    <input  type="radio" name="insuranceExchange.orderSex" value="1">
                 </td>
+            </tr>
+            <tr>
+                <td>  手机号:</td>
+                <td>    <input type="text" required="required" class="form-control"name="insuranceExchange.orderNumber"</td>
             </tr> 
              <tr>
                 <td>  邮箱:</td>
@@ -142,7 +151,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <label>女</label>
                    <input  type="radio"required="required" name="insuranceExchange.enjoySex" value="1">
                 </td>
-            </tr>  <tr>
+            </tr>
+             <tr>
+                <td> 手机:</td>
+                <td>  <input type="text"required="required" class="form-control" name="insuranceExchange.enjoyNumber" id="number"> </td>
+            </tr>
+            
+              <tr>
                 <td> 邮箱:</td>
                 <td>  <input type="text"required="required" class="form-control" name="insuranceExchange.enjoyEmail" id="number"> </td>
             </tr>
@@ -162,7 +177,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </div>
 </div>
+
 <script src="js/index.js"></script>
 <script src="js/index1.js"></script>
+<script type="text/javascript">
+$('#birthday1,#birthday,#startdate,#enddate').datetimepicker({
+
+    lang:"ch", //语言选择中文 注：旧版本 新版方法：$.datetimepicker.setLocale('ch');
+    format:"Y-m-d",      //格式化日期
+    timepicker:false,    //关闭时间选项
+    yearStart:1950,     //设置最小年份
+    yearEnd:2050,        //设置最大年份
+    todayButton:false  //关闭选择今天按钮
+});
+</script>
 </body>
 </html>

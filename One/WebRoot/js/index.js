@@ -45,11 +45,11 @@ $('.sib').click(function () {
     {
         $(this).siblings('.son').show(400);
 
-        $(this).children('span').text("v");
+        $(this).children('span').text("-");
     }else{
 
         $(this).siblings('.son').hide(400);
-        $(this).children('span').text(">");
+        $(this).children('span').text("+");
     }
 
     $(this).parent().siblings('li').find('.son').hide(400);
@@ -65,7 +65,7 @@ $('.son li').click(function () {
    switch (thisItem+item)
    {
        case 0:
-       url='';
+       url='view/showInsurance.html';
            break;
        case 1:
     	   url='ishow';
@@ -101,15 +101,6 @@ $('.son li').click(function () {
 });
 
 
-$('#birthday1,#birthday,#startdate,#enddate').datetimepicker({
 
-    lang:"ch", //语言选择中文 注：旧版本 新版方法：$.datetimepicker.setLocale('ch');
-    format:"Y-m-d",      //格式化日期
-    timepicker:false,    //关闭时间选项
-    yearStart:2000,     //设置最小年份
-    yearEnd:2050,        //设置最大年份
-    todayButton:false    //关闭选择今天按钮
-
-});
 
 
