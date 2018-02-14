@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.devMode" value="true" />
+     
+    <constant name="struts.i18n.encoding" value="UTF-8" /> 
+    
+    
+    <package name="base" namespace="/" extends="struts-default">
+
+          <action name="u*" method="{1}"  class="com.action.UserSerive">   
+          </action>
+         
+      
+         
+         <action name="i*" method="{1}" class="com.action.InsuranceExchangeService">
+         </action>
+         
+    </package>
+    
+    
+
+</struts>

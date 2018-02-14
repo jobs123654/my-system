@@ -1,0 +1,97 @@
+<!-- 指定Web应用的默认编码集,相当于调用HttpServletRequest的setCharacterEncoding方法 --> 
+
+<constant name="struts.i18n.encoding" value="UTF-8" /> 
+
+<!- 国际化-把资源文件定为全局变量 baseName为名字-->
+
+<constant name="struts.custom.i18n.resources" value="baseName" /> 
+
+<!--该属性指定需要Struts 2处理的请求后缀，该属性的默认值是action，即所有匹配*.action的请求都由Struts2处理。 如果用户需要指定多个请求后缀，则多个后缀之间以英文逗号（,）隔开-->
+
+<constant name="struts.action.extension" value="do,action,htm,html,jsp" /> 
+
+<!-- 设置浏览器是否缓存静态内容,默认值为true(生产环境下使用),开发阶段最好关闭 --> 
+
+<constant name="struts.serve.static.browserCache" value="false" /> 
+
+ <!-- 当struts的配置文件修改后,系统是否自动重新加载该文件,默认值为false(生产环境下使用),开发阶段最好打开--> 
+
+<constant name="struts.configuration.xml.reload" value="true" /> 
+
+<!-- 开发模式下使用,这样可以打印出更详细的错误信息 --> 
+
+<constant name="struts.devMode" value="true" /> 
+
+<!-- 默认的视图主题 --> 
+
+<constant name="struts.ui.theme" value="simple" /> 
+
+<!-- spring 托管 --> 
+
+<constant name="struts.objectFactory" value="spring" /> 
+
+<!--指定加载struts2配置文件管理器，默认为org.apache.struts2.config.DefaultConfiguration 
+
+开发者可以自定义配置文件管理器，该类要实现Configuration接口，可以自动加载struts2配置文件--> 
+
+<constant name="struts.configuration" value="org.apache.struts2.config.DefaultConfiguration" /> 
+
+<!-- 设置默认的locale和字符编码 --> 
+
+<constant name="struts.locale" value="zh_CN" /> 
+
+<constant name="struts.i18n.encoding" value="GBK" /> 
+
+<!--指定spring框架的装配模式，装配方式有: name, type, auto, and constructor (name是默认装配模式)> 
+
+<constant name="struts.objectFactory.spring.autoWire" value="name" /> 
+
+<!-- 该属性指定整合spring时，是否对bean进行缓存，值为true or false,默认为true --> 
+
+<cosntant name="struts.objectFactory.spring.useClassCache" value="true"/> 
+
+<!-- 指定类型检查,包含tiger和notiger --> 
+
+<cosntant name="struts.objectTypeDeterminer" value="tiger" /> 
+
+<!-- 该属性指定处理 MIME-type multipart/form-data，文件上传 --> 
+
+<constant name="struts.multipart.parser" value="cos" /> 
+
+<constant name="struts.multipart.parser" value="pell" /> 
+
+<constant name="struts.multipart.parser" value="jakarta" /> 
+
+<!-- 指定上传文件时的临时目录，默认使用 javax.servlet.context.tempdir --> 
+
+<constant name="struts.multipart.saveDir" value="/tmpuploadfiles" /> 
+
+<!-- 该属性指定Struts 2文件上传中整个请求内容允许的最大字节数 --> 
+
+<constant name="struts.multipart.maxSize" value="2097152" /> 
+
+<!--该属性指定Struts2应用加载用户自定义的属性文件，该自定义属性文件指定的属性不会覆盖struts.properties文件中指定的属性。如果需要加载多个自定义属性文件，多个自定义属性文  
+
+件的文件名以英文逗号（,）隔开。(也就是说不要改写struts.properties!)  --> 
+
+<constant name="struts.custom.properties"value="application,org/apache/struts2/extension/custom" /> 
+
+<!-- 指定请求url与action映射器，默认为org.apache.struts2.dispatcher.mapper.DefaultActionMapper -> 
+
+<constant name="struts.mapper.class"           value="org.apache.struts2.dispatcher.mapper.DefaultActionMapper" /> 
+
+<!-- 设置是否支持动态方法调用，true为支持，false不支持. --> 
+
+<constant name="struts.enable.DynamicMethodInvocation" value="true" /> 
+
+<!-- 设置是否可以在action中使用斜线，默认为false不可以，想使用需设置为true. --> 
+
+<constant name="struts.enable.SlashesInActionNames" value="true" /> 
+
+<!-- 是否允许使用表达式语法，默认为true. --> 
+
+<constant name="struts.tag.altSyntax" value="true" /> 
+
+<!-- 设置当struts.xml文件改动时，是否重新加载 --> 
+
+<cosntant name="struts.configuration.xml.reload" value="true" /> 
