@@ -1,0 +1,13 @@
+D:\项目包\my-system\wpf\wpf\wpf\bin\Debug\wpf.exe.config
+D:\项目包\my-system\wpf\wpf\wpf\bin\Debug\wpf.exe
+D:\项目包\my-system\wpf\wpf\wpf\bin\Debug\wpf.pdb
+D:\项目包\my-system\wpf\wpf\wpf\obj\Debug\wpf.csprojResolveAssemblyReference.cache
+D:\项目包\my-system\wpf\wpf\wpf\obj\Debug\MainWindow.baml
+D:\项目包\my-system\wpf\wpf\wpf\obj\Debug\MainWindow.g.cs
+D:\项目包\my-system\wpf\wpf\wpf\obj\Debug\App.g.cs
+D:\项目包\my-system\wpf\wpf\wpf\obj\Debug\wpf_MarkupCompile.cache
+D:\项目包\my-system\wpf\wpf\wpf\obj\Debug\wpf.g.resources
+D:\项目包\my-system\wpf\wpf\wpf\obj\Debug\wpf.Properties.Resources.resources
+D:\项目包\my-system\wpf\wpf\wpf\obj\Debug\wpf.csproj.GenerateResource.Cache
+D:\项目包\my-system\wpf\wpf\wpf\obj\Debug\wpf.exe
+D:\项目包\my-system\wpf\wpf\wpf\obj\Debug\wpf.pdb

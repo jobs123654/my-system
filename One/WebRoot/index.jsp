@@ -1,6 +1,7 @@
+
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@page import="com.tool.Tool"%>
 <%@page import="com.entity.User"%>
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -16,8 +17,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <%
-User user=new User();
 
+User user=new User();
 Cookie []cookies=Tool.getHttpServletRequest().getCookies();
 
 for(Cookie c:cookies)
@@ -30,8 +31,9 @@ for(Cookie c:cookies)
   {
     user.setUserPassword(c.getValue());
   }
-}
 
+}
+     
  %>
   <div class="box1">
     <div class="box2">
@@ -76,7 +78,8 @@ $('#register').click(function(){
    $("#tish").show();
    setTimeout(function() {
    	  $("#tish").hide();
-   }, 3000)
+   }, 3000);
+   
 });
 </script>
 </body>
