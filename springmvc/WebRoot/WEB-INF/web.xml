@@ -36,6 +36,8 @@
    <url-pattern>/</url-pattern>
  </servlet-mapping>
  
+ 
+ <!--  -->
  <!-- 配置rest风格 -->
  <filter>
    <filter-name>hiddenHttpMethodFilter</filter-name>
@@ -47,6 +49,9 @@
   <url-pattern>/*</url-pattern>
   
  </filter-mapping>
+ 
+ 
+ 
  <!-- 
  引入资源文件 -->
  <servlet-mapping>
