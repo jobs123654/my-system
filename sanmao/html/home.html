@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>唐山市中小学划片招生系统</title>
+    <style type="text/css">
+        body{
+            margin: 0;
+            overflow: hidden;
+            background: #fff;
+        }
+        #map{
+            width:1200px;
+            height: 510px;
+        }
+        #main{
+            overflow: hidden;
+        }
+        #main ul{
+            margin-left: 4%;
+            margin-top: 6%;
+        }
+        .height0{
+            background-color: dodgerblue;
+            color: white;
+        }
+        .normal{
+            color: black;
+            background-color:aquamarine;
+        }
+        .white{
+            background: white;
+            color: black;
+        }
+        #main li
+     {
+            margin: 1% 1%;
+            cursor: pointer;
+         list-style: none;
+         width: 100px;
+         line-height: 91px;
+
+         float: left;
+         text-align: center;
+         vertical-align: center;
+          border: 0.5px solid #ccc;
+            border-radius: 5px;
+
+     }
+
+    </style>
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link href='../css/bootstrap.min.css' rel='stylesheet' />
+    <link href='../css/bootstrap-responsive.min.css' rel='stylesheet' />
+    <script src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=95a21d20cfe4df8d03f267282e62d8ae"></script>
+    <script src = '../libs/SuperMap.Include.js'></script>
+    <script src = '../js/Pie.js'></script>
+    <script src = '../js/Baidu.js'></script>
+    <script src = '../js/Bar3D.js'></script>
+    <script src = '../js/data.js'></script>
+
+
+</head>
+<body onLoad = "init()">
+
+<div class="container-fluid">
+    <div class="row">
+       <div class="col-md-12" style="background-color: black">
+
+           <nav class="navbar-inverse">
+               <div class="container-fluid">
+                   <!-- Brand and toggle get grouped for better mobile display -->
+                   <div class="navbar-header">
+                       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                           <span class="sr-only">Toggle navigation</span>
+                           <span class="icon-bar"></span>
+                           <span class="icon-bar"></span>
+                           <span class="icon-bar"></span>
+                       </button>
+                       <a class="navbar-brand" href="#">Hello</a>
+                   </div>
+
+                   <!-- Collect the nav links, forms, and other content for toggling -->
+                   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                       <ul class="nav navbar-nav">
+                           <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
+                           <!--<li><a href="#">Link</a></li>-->
+                           <li class="dropdown">
+                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">工具集 <span class="caret"></span></a>
+                               <ul class="dropdown-menu">
+                                   <li id="line"><a href="#">距离量算</a></li>
+                                   <li role="separator" class="divider"></li>
+                                   <li id="area"><a href="#">面积量算</a></li>
+                                   <li role="separator" class="divider"></li>
+                                   <li  onclick="createPrintMap('map')"><a href="#">地图打印</a></li>
+                                   <li role="separator" class="divider"></li>
+                                   <li onclick="clearFeatures()"><a href="#" >清除要素</a></li>
+
+                               </ul>
+                           </li>
+                       </ul>
+                       <div class="navbar-form navbar-left">
+                           <div class="form-group">
+                               <input type="text" id="search" class="form-control" placeholder="学校/学区房">
+                           </div>
+                           <button type="submit"  class="btn btn-default" id="query">查询</button>
+
+                       </div>
+                       <ul class="nav navbar-nav navbar-right">
+                           <li><a href="#"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;&nbsp;root</a></li>
+                           <li id="more"><a href="#"><span class="glyphicon glyphicon-th-list"></span> </a></li>
+                           <!--<li class="dropdown">
+                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                               <ul class="dropdown-menu">
+                                   <li><a href="#">Action</a></li>
+                                   <li><a href="#">Another action</a></li>
+                                   <li><a href="#">Something else here</a></li>
+                                   <li role="separator" class="divider"></li>
+                                   <li><a href="#">Separated link</a></li>
+                               </ul>
+                           </li>-->
+                       </ul>
+                   </div><!-- /.navbar-collapse -->
+               </div><!-- /.container-fluid -->
+           </nav>
+
+       </div>
+
+
+
+        <div class="panel panel-primary" id="main" style="display: none; z-index: 99;height: 400px;width: 30%; overflow: auto;position:absolute;left: 30%;top:20%;">
+            <div class="panel-heading" style="cursor: move">
+
+                <h3 class="panel-title">功能区&nbsp;&nbsp;&nbsp;
+                    <span class="close">&times;</span>
+                </h3>
+            </div>
+            <div class="panel-body" style="overflow: hidden">
+                <ul class="col-md-12">
+                    <li  data-toggle="modal" data-backdrop="static" data-target="#myModal0" id="suoshu" >所属学校</li>
+                    <li id="tuijian">学区房推荐</li>
+                    <li id="add_xq">新增小区</li>
+                    <li id="ex_school" >学校扩张</li>
+                    <li data-toggle="modal" data-backdrop="static" data-target="#myModal1" id="move_school" >学校迁址</li>
+
+                    <li id="fixed">网络定位</li>
+                    <li  id="huapian">手动划片</li>
+                    <li  id="theme_school1">招生专题[I]</li>
+                    <li  id="theme_school2">招生专题[II]</li>
+                </ul>
+
+
+            </div>
+
+        </div>
+
+        <!--<div class="btn-group" style="position: fixed; top: 4%;left: 29%;z-index: 99">
+
+
+
+            <form class="form-inline" style="position: fixed; top: 4%;left: 10%;z-index: 99">
+                <div class="form-group">
+
+                    <div class="input-group">
+                        <div class="input-group-addon btn" id="param" data-backdrop="static" data-toggle="modal" data-target="#myModal"><span  title="设置查询参数" class="glyphicon glyphicon-asterisk"></span></div>
+                        <input type="text" id="search" class="form-control" placeholder="小区/学校">
+
+
+
+                    </div>
+                </div>
+
+            </form>
+
+           &lt;!&ndash; <button class="btn btn-success" id="querySchool">查询学校</button>
+            <button class="btn btn-success" id="queryXiaoqu" >查询小区</button>
+
+            <button class="btn btn-success" >清除要素</button>
+            <button class="btn btn-success" id="huapian">划片</button>
+            <button class="btn btn-success" id="more"><span class="glyphicon glyphicon-th"></span></button>&ndash;&gt;
+        </div>-->
+
+
+        <!--<div class="btn-group-vertical" style="position: fixed; top: 12%;left: 1%;z-index: 99">
+
+            <button class="btn btn-success" id="line" >长度测量</button>
+            <button class="btn btn-success" id="area">面积测量</button>
+            <button class="btn btn-success" id="fixed">网络定位</button>
+            <button class="btn btn-success"  data-toggle="modal" data-backdrop="static" data-target="#myModal0" id="suoshu">所属学校</button>
+            <button class="btn btn-success" id="tuijian">学区房推荐</button>
+            <button class="btn btn-success" id="add_xq">新增小区</button>
+            <button class="btn btn-success" id="ex_school">学校扩张</button>
+
+            <button class="btn btn-success" data-toggle="modal" data-backdrop="static" data-target="#myModal1" id="move_school" >学校迁址</button>
+            <button class="btn btn-success" id="theme_school1">招生数量专题</button>
+            <button class="btn btn-success" id="theme_school2">招生区域专题</button>
+        </div>-->
+
+
+
+
+
+        <div id="map"  class="col-md-12"  style=" width: 100%;z-index: 0;">
+
+        </div>
+
+
+
+        <div class="modal fade" id="myModal0" tabindex="-1"  role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel1">所属学校查询</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+
+                        <div class="panel panel-default">
+                            <!--<div class="panel-heading">-->
+                            <!--<h3 class="panel-title">Panel title</h3>-->
+                            <!--</div>-->
+                            <div class="panel-body">
+                                <div class="form-group row">
+                                    <label for="range" class="col-sm-2 control-label">所在位置</label>
+                                    <div class="col-sm-10">
+                                        <input type="text"  class="form-control" id="weizhi" autofocus="true" placeholder="">
+                                    </div>
+                                </div>
+
+                                <ul class="list-group" id="sc_list">
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" id="search_param" class="btn btn-primary">查询</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="progress" style="z-index: 99;position: fixed;width:300px;left: 40%;top:40%">
+            <div class="progress-bar" id="pro" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                60%
+            </div>
+        </div>
+        <!-- Modal0 -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1"  role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">设置查询参数</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="range" class="col-sm-2 control-label">范围</label>
+                                <div class="col-sm-10">
+                                    <input type="number"  class="form-control" id="range" autofocus="true" placeholder="单位:公里">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="near"  class="col-sm-2 control-label">就近选择</label>
+                                <div class="col-sm-7">
+                                    <input type="checkbox" class="form-control"  id="near">
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" id="save_param" class="btn btn-primary" data-dismiss="modal">保存</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal1" tabindex="-1"  role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel1">学校迁址</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="range" class="col-sm-2 control-label">学校名称</label>
+                                <div class="col-sm-10">
+                                    <input type="text"  class="form-control" id="school_name" onfocus="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="range" class="col-sm-2 control-label">最大容量</label>
+                                <div class="col-sm-10">
+                                    <input type="number"  placeholder="初始值" class="form-control" id="rl" >
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" id="ok" class="btn btn-primary" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--覆盖点列表-->
+        <div id="xq_panel" class="panel col-md-3 panel-primary" style="display: none; z-index: 99;height: 400px;overflow:auto;position:absolute;left: 30%;top:20%;">
+            <div class="panel-heading">
+                <h3 class="panel-title">覆盖点列表&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="close">&times;</span>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group" id="xq_list">
+
+                </ul>
+            </div>
+
+        </div>
+        <!--学区房-->
+        <div id="xuequ" class="panel col-md-3 panel-primary" style="display: none; z-index: 99;height: 400px;overflow:auto;position:absolute;left: 30%;top:20%;">
+            <div class="panel-heading">
+                <h3 class="panel-title">学区房推荐&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="close">&times;</span>
+                </h3>
+            </div>
+            <div class="panel-body">
+            <ul class="list-group">
+
+            </ul>
+        </div>
+
+        </div>
+
+
+
+
+    </div>
+</div>
+
+<script type="text/javascript" src="../js/script.js">
+
+</script>
+<script src="../js/analysis.js" type="text/javascript"></script>
+<script src="../js/drag.js" type="text/javascript"></script>
+
+<script>
+    localStorage.setItem('near','on');
+
+    $('#xq_panel,#xuequ,#main').draggable();
+    $('#param').click(function () {
+// alert(localStorage.getItem("near")+" "+localStorage.getItem("range"));
+        if(localStorage.getItem("near"))
+        {
+            $('#near').attr("checked",true);
+        }
+        if(localStorage.getItem("range"))
+        {
+            $('#range').attr("value",localStorage.getItem("range"));
+        }
+    });
+    $('#save_param').click(function () {
+        var range=$('#range').val(),near=$('#near').val();
+
+           localStorage.setItem("range",range);
+
+           if( $('#near').is(":checked"))
+           {
+               localStorage.setItem("near",near);
+
+           }else {
+               localStorage.setItem("near", "no");
+           }
+    });
+    $('#fixed').click(function () {
+        fixedPosition();
+    });
+
+    $('#suoshu').click(function () {
+        var a=[];
+        // alert(system.getInfo("普光"));
+       a.push(localStorage.getItem("普光南里"));
+
+        // $('#sc_list').empty();
+        // getFeaturesByIDs('school',a);//高亮
+    });
+
+    $('#search_param').click(function () {
+        var a=[];
+        $('#sc_list').children('li').remove();
+
+        var s=system.getNearSchool($('#weizhi').val());
+
+       if(s!=null)
+       {
+           for(var i in s.js)
+           {
+               a.push(s.js[i].id);
+               var item=$('<li class="list-group-item"><span>小学</span>&nbsp;&nbsp;'+s.js[i].name+'</li>');
+               $('#sc_list').append(item);
+
+           }
+           for(var i in s.hs)
+           {
+               var item=$('<li class="list-group-item"><span>中学</span>&nbsp;&nbsp;'+s.hs[i].name+'</li>');
+               $('#sc_list').append(item);
+               a.push(s.hs[i].id);
+           }
+       }
+        // 唐山市畜牧水产品质量监测中心
+        // a.push(localStorage.getItem(system.getInfo($('#weizhi').val())));
+        console.log(s);
+        getFeaturesByIDs('school',a);//高亮
+    });
+
+    // getAllElement('school');
+    // getAllElement('xiaoqu');
+    queryBySQL('school');
+    queryBySQL('xiaoqu');
+    $('#more').click(function () {
+
+    $('#main').show();
+
+    });
+
+    $('#main li').mouseenter(function () {
+
+        $(this).addClass('normal');
+        $(this).removeClass('white');
+    }).mouseleave(function () {
+        // alert($(this).attr('class'));
+        if($(this).attr('class')=='height0')
+        {
+
+            return false;
+        }
+        $(this).removeClass('normal');
+        $(this).addClass('white');
+    });
+    $('#main li').click(function () {
+        $(this).removeClass('normal');
+
+        $(this).addClass('height0');
+        var index=$('#main li').index($(this));
+        // $(this).removeClass('white');
+        $(this).siblings('li').removeClass('height0');
+
+       switch (index)
+       {
+           case 0:
+
+               break;
+           case 1:
+               break;
+           case 2:
+               break;
+           case 3:
+               break;
+           case 4:
+               break;
+           case 5:
+               break;
+           case 6:
+               break;
+           case 7:
+               break;
+           case 8:
+               break;
+       }
+
+    })
+
+
+</script>
+</body>
+</html>

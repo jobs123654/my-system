@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>测试</title>
+    <style type="text/css">
+        body{
+            margin: 0;
+
+            background: #fff;
+        }
+        #map{
+            position: relative;
+            /*height: 553px;*/
+            border:1px solid #3473b7;
+        }
+    </style>
+    <link href='../css/bootstrap.min.css' rel='stylesheet' />
+    <link href='../css/bootstrap-responsive.min.css' rel='stylesheet' />
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=95a21d20cfe4df8d03f267282e62d8ae"></script>
+    <script src = '../libs/SuperMap.Include.js'></script>
+    <script type="text/javascript" src="../libs/iConnectorBaidu.js"></script>
+</head>
+<body>
+
+
+<script type="text/javascript">
+   var school=function (id,x,y,n) {
+       this.id="school_"+id;
+       this.x=x;
+       this.y=y;
+       this.n=n;
+       this.current=0;//当前招到学生人数
+       
+   };
+   school.prototype={
+       constructor:school,
+       isFull:function () {
+           return this.n==this.current;
+       }
+   };
+   var xq=function (id,x,y,n) {
+       this.id="xq_"+id;
+       this.x=x;
+       this.y=y;
+       this.n=n;
+   };
+   xq.prototype={
+       constructor:xq,
+       setSchool:function (id) {
+           this.id=id;
+       }
+   };
+   var sc=[],xc=[];
+  function create() {
+     for(var i=0;i<3;i++){
+         var x=Math.random()*90+20,y=Math.random()*36+4;
+         var c=new school(i,x,y,Math.ceil(Math.random()*200+200));
+         sc.push(c);
+     }
+      for(var i=0;i<7;i++){
+          var x=Math.random()*90+20,y=Math.random()*36+4;
+          var c=new xq(i,x,y,Math.ceil(Math.random()*50+50));
+          xc.push(c);
+      }
+
+  }
+
+
+  function  display(a) {
+      if(a instanceof  Array)
+      {
+          document.writeln("学校数据<br>");
+          for(var i in a)
+          {
+              document.writeln(i+"  "+a[i].x+"  __   "+a[i].y+"  __  "+a[i].n+"\n");
+              document.writeln("<br>");
+          }
+          document.writeln("<br>");
+      }
+
+
+  }
+    create();
+    display(sc);
+    display(xc);
+
+
+
+</script>
+</body>
+</html>

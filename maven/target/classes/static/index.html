@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>index</h1>
+<a href="test">go</a>
+<form action="add" method="post">
+    <table>
+   <!--  <tr>
+         <td>Id</td>
+         <td>
+             <input type="text" name="id"/>
+         </td>
+        </tr>-->
+
+        <tr>
+            <td>name</td>
+            <td>
+                <input type="text" name="userName"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>password</td>
+            <td>
+                <input type="text" name="userPassword"/>
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <input type="submit" value="click"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>age</td>
+            <td>
+                <input type="text" name="age"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<button id="click">click</button>
+<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+<script>
+
+    $('#click').click(function () {
+
+        $.get(
+            'json',
+            {},
+            function (data) {
+                console.log(data);
+            }
+        );
+    });
+</script>
+</body>
+</html>

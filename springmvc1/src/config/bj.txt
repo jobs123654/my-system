@@ -1,0 +1,40 @@
+UserMapper.xml
+
+  <mapper  namespace="com.ij34.model.UserMapper">
+   对应于接口UserMapper
+   <?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper  namespace="com.ij34.model.UserMapper">
+  <select id="selectUser" parameterType="int" resultType="com.ij34.model.User">
+    select * from users where id=#{id};
+  </select>
+    <update id="updateUser" keyProperty="id">
+    update users set name=#{name},age=#{age} where id=#{id}
+  </update>
+  
+  <insert id="insertUser" >
+   insert into users(name,age)values(#{name},#{age})
+  </insert>
+  <delete id="deleteUser">
+    delete from users where name=#{name}
+  </delete>
+
+	  <resultMap type="Article" id="resultAticleList">
+	  <id property="id" column="aid"/>
+	  <result property="title" column="title"/>
+	  <result property="content" column="content"/>
+	  <association property="user" javaType="User">
+	  <id property="id" column="id"/>
+	  <result property="name" column="name"/>
+	  <result property="age" column="age"/>
+	  </association>
+	  
+	  </resultMap>
+  <select id="selectarticle" parameterType="int" resultMap="resultAticleList">
+  select users.id,users.name,users.age,article.id aid,article.title,article.content from users,article
+  where users.id=article.userid and users.id=#{id}
+  </select>
+  </mapper>

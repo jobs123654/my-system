@@ -62,25 +62,34 @@ $('.son li').click(function () {
    var item=$('.son li').index(this),thisItem=$('#celan li').index($(this).parent().parent());
 
 
+  
    switch (thisItem+item)
    {
        case 0:
-       url='view/showInsurance.html';
+       url='cshow';
            break;
        case 1:
     	   url='ishow';
            break;
-       case 2:
-
+           case 6:
+        	   url="uuserList";
+        	   break;
+       case 5:
+           url="umanage"
            break;
        case 7:
 
            break;
-       case 8:
-
+       case 10:
+        url="uconfig";
            break;
-       case 9:
-
+       case 11:
+    	   url="uconfig1";
+//           $.post("uconfig1", {},
+//        		   function(data, textStatus, req) {
+//                   alert("数据恢复成功！");
+//                  })
+    	   
            break;
        case 14:
 

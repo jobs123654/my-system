@@ -26,12 +26,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-   hello spring mvc! <br>
-   <form action="upload" method="post" enctype="multipart/form-data">
-    Name:<input type="text" name="name"><br>
-    Pwd:<input type="password" name="pwd"><br>
-    File:<input type="file" name="file">
-    <input type="submit" value="click">
-   </form>
+   hello spring mvc!
+   <a href="booklist/1">ccc</a>
+    <br>
+   
   </body>
 </html>

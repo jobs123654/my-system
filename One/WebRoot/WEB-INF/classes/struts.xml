@@ -13,17 +13,30 @@
     <package name="base" namespace="/" extends="struts-default">
           <action name="u*" method="{1}"  class="com.action.UserSerive">
             <result name="login">view/index.jsp</result>   
+             <result name="list">/view/userList.jsp</result>   
              <result name="error" type="redirect">index.jsp</result>   
-             
+              <result name="home" type="redirect">/view/welcome.jsp</result>   
+              <result name="manage" type="redirect">/view/manager.jsp</result>
+              <result name="update">/view/user_update.jsp</result>
+              <result name="config">/view/config.jsp</result>
+              <result name="config1">/view/config1.jsp</result>
+              <result name="success">/view/success.jsp</result>
           </action>
           
            <action name="i*" method="{1}" class="com.action.InsuranceExchangeService">
-           <result name="show">view/showInsuranceExchange.jsp</result>
-            <result name="result">view/InsuranceExchangeResult.jsp</result>
+              <result name="show">view/showInsuranceExchange.jsp</result>
+               <result name="result">view/InsuranceExchangeResult.jsp</result>
               <result name="update">view/updateInsuranceExchange.jsp</result>
               <result name="info">view/InsuranceExchangeInfo.jsp</result>
 
-         </action>
+           </action>
+          
+          <action name="c*" method="{1}" class="com.action.ClassifyAction">
+              <result name="list">view/classify.jsp</result>
+              <result name="add">view/add.jsp</result>
+
+           </action>
+          
          
     </package>
     

@@ -1,5 +1,6 @@
 package com.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,15 +11,35 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 public class User implements BaseEntity{
 
- 
- private String useNumber;//工号
+	@Id
+	@GeneratedValue
+ private int id;
+ public int getId() {
+	return id;
+}
+
+public void setId(int id) {
+	this.id = id;
+}
+ @Column(unique=true)
+private String useNumber;//工号
  private String userPassword;//密码
  private String userName;//姓名
  private int userSex;//性别
  private String userNumber;//电话
  
+ private int role;//权限默认为普通员工
  
- @Transient
+ 
+ public int getRole() {
+	return role;
+}
+
+public void setRole(int role) {
+	this.role = role;
+}
+
+@Transient
  public Boolean getIsRemember() {
 	return isRemember;
 }
@@ -59,9 +80,7 @@ public String getUserNumber() {
 public void setUserNumber(String userNumber) {
 	this.userNumber = userNumber;
 }
-@Id
-@GeneratedValue(generator="id")
-@GenericGenerator(name="id",strategy="assigned")
+
 public String getUseNumber() {
 	return useNumber;
 }
@@ -83,7 +102,7 @@ public User(String useNumber, String userPassword) {
 @Override
 public String toString() {
 	// TODO Auto-generated method stub
-	return " Id:"+useNumber+" Up:"+userPassword+"  "+userName+"  "+userSex+" "+userNumber;
+	return id+" "+useNumber+" "+userPassword+"  "+userName+"  "+userSex+" "+userNumber;
 }
  
  

@@ -1,4 +1,3 @@
-
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@page import="com.tool.Tool"%>
 <%@page import="com.entity.User"%>
@@ -17,10 +16,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <%
-
 User user=new User();
 Cookie []cookies=Tool.getHttpServletRequest().getCookies();
 
+if(cookies.length>0)
+{
 for(Cookie c:cookies)
 {
   if(c.getName().equals("number"))
@@ -32,6 +32,7 @@ for(Cookie c:cookies)
     user.setUserPassword(c.getValue());
   }
 
+}
 }
      
  %>

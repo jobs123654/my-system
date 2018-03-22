@@ -1,3 +1,4 @@
+<%@page import="org.springframework.web.context.annotation.SessionScope"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%
@@ -77,8 +78,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <td>&nbsp;</td>
                     <td>&nbsp;&nbsp;&nbsp;</td>
                     <td><span class=" glyphicon glyphicon-off" id="logout" style="cursor: pointer"></span>退出</td>
-
-
                 </tr>
             </table>
         </header>
@@ -87,22 +86,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!--侧栏-->
         <div  id="cl" class="col-md-2 pull-left center row" >
             <ul id="celan"  class="col-md-8  center-block" style="text-align: center;vertical-align: center;margin-top: 40%">
+           
                 <li ><a href="#" onclick="return false" class="btn sib"> 保险管理 <span>+ </span></a>
 
                     <ul class="son">
                         <li > <a class="btn" href="#" onclick="return false">保险名录</a></li>
-                        <li ><a class="btn"href="#" onclick="return false">业务数据</a></li>
+                       <!--  <li ><a class="btn"href="#" onclick="return false"> 业务数据</a></li> -->
                         
                     </ul>
                 </li>
-                <%-- <li><a onclick="return false" href="#" class="sib">员工管理 <span>  ></span></a>
+                
+               
+                <s:if test="#session.user.role != 0">
+               
+               
+               <li ><a href="#" onclick="return false" class="btn sib"> 员工管理 <span>+ </span></a>
 
                     <ul class="son">
-                        <li><a  onclick="return false"href="#">11111111</a></li>
-                        <li><a href="#" onclick="return false">11111111</a></li>
-                        <li><a href="#" onclick="return false">11111111</a></li>
+                        <li > <a class="btn" href="#" onclick="return false">员工注册</a></li>
+                        <li > <a class="btn" href="#" onclick="return false">员工列表</a></li>
+                      
                     </ul>
                 </li>
+                  
+                  <li ><a href="#" onclick="return false" class="btn sib"> 系统工具 <span>+ </span></a>
+
+                    <ul class="son">
+                        <li > <a class="btn" href="#" onclick="return false">数据备份</a></li>
+                        <li > <a class="btn" href="#" onclick="return false">数据恢复</a></li>
+                      
+                    </ul>
+                </li>
+                 
+                </s:if>
+                
+             
+				 
+				 
+				 
+				 
+                <%-- 
                 <li><a href="#" class="sib" onclick="return false">其它管理 <span> ></span></a>
 
                     <ul class="son">

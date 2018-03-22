@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -22,5 +23,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   home page <br>
+  
+ from model: ${requestScope.key.name }<br>
+ 
+ from map: ${requestScope.you.name }<br>
+ 
+  <c:forEach items="${list}" var="item">
+    ${item.id }----${item.name }----${item.uid }<br>
+  </c:forEach>
+  
+  
+  <a href="${page.previousPage}">previous</a>
+  ${ar.length }
+  <c:forEach items="${total}" var="item" >
+     <a href="booklist/${item}">${item}</a> &nbsp;&nbsp;
+  </c:forEach>
+  
+  <a href="${page.nextPage}">next</a>
   </body>
 </html>

@@ -52,7 +52,7 @@ public class BaseDao {
 	 {
 			try {
 				if(baseEntity instanceof User)
-					
+		
 				{
 					
 					UserDao.isDelete(baseEntity);

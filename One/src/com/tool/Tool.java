@@ -6,6 +6,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimerTask;
 
 import javax.enterprise.inject.New;
 import javax.servlet.http.HttpServletRequest;
@@ -20,10 +21,16 @@ import com.entity.InsuranceExchange;
 
 import static org.hamcrest.CoreMatchers.nullValue;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -179,8 +186,8 @@ public class Tool {
  	  row16.createCell(10).setCellValue(insuranceExchange.getXianStartDate());
  	  row17.createCell(10).setCellValue(insuranceExchange.getXianEndDate());
  	  row18.createCell(10).setCellValue(insuranceExchange.getEnjoyLink());
- 	 row19.createCell(10).setCellValue(insuranceExchange.getUseNumber());
- 	 row20.createCell(10).setCellValue(insuranceExchange.getCreateTime());
+ 	  row19.createCell(10).setCellValue(insuranceExchange.getUseNumber());
+ 	  row20.createCell(10).setCellValue(insuranceExchange.getCreateTime());
  	   //输出Excel文件  
  	   FileOutputStream output=null;
  	try {
@@ -234,5 +241,122 @@ public class Tool {
    {
 	   return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
    }
+  /* 数据库备份*/
+   public static void backupMysqlDatabase(String dbpath, String hostName,String dataBase,String userName, 
+		   String passwd,String outFilePath )throws Exception { 
+//		还原一个数据库:mysql -h localhost -u root -p123456 www
+//
+//
+//		备份一个数据库:mysqldump -h localhost -u root -p123456 www > d:\www2008-2-26.sql
+		   //组装MySQL的备份命令 
+		   StringBuilder sqlStr = new StringBuilder(); 
+		   sqlStr.append(dbpath+"/bin/mysqldump -u").append(userName) .append(" -p").append(passwd) 
+		   .append(" ").append(dataBase); 
+		   if(hostName != null &&!hostName.equals("") ){ 
+		   sqlStr.append("");
+		   
+		   System.out.println(sqlStr+"**************************");
+		   } 
+		   // --default-character-set=gb2312 
+		   //调用系统cmd 命令执行备份命令 
+		   Runtime rt = Runtime.getRuntime(); 
+		   Process process = rt.exec(sqlStr.toString()); 
+		   InputStream in = process.getInputStream();//控制台的输出信息作为输入流 
+		   InputStreamReader isr = new InputStreamReader(in,"utf8"); StringBuilder sb = new StringBuilder(""); 
+		   String inStr; 
+		   //组合控制台输出信息字符串 
+		   BufferedReader br = new BufferedReader(isr); 
+		   while((inStr = br.readLine()) != null){ 
+		   sb.append(inStr) 
+		   .append("rn"); 
+		   }//把备份数据写入到文件中 
+		   FileOutputStream fout = new FileOutputStream (outFilePath); 
+		   OutputStreamWriter writer = new OutputStreamWriter(fout,"utf8"); 
+		   writer.write(sb.toString()); 
+		   writer.flush(); 
+		   //写完文件,关闭相应的流 
+		   in.close(); 
+		   isr.close(); 
+		   br.close(); 
+		   writer.close(); 
+		   fout.close(); 
+		   }
+   public static void recoverDb(String dbpath, String hostName,String dataBase,String userName, 
+		   String passwd,String fPath) throws Exception
+         {
+	       Runtime rt = Runtime.getRuntime(); 
+	       String sqlStr = ""; 
+	       sqlStr=dbpath+"/bin/mysql -u "+userName+" -p "+passwd+" "+dataBase; 
+	            Process child;
+				
+	    
+	            InputStreamReader in;
+	            child = rt.exec(sqlStr.toString());
+
+				in = new InputStreamReader(new FileInputStream(fPath),"UTF-8");
+				BufferedReader br =new BufferedReader(in);
+		          
+	            String inStr =null;
+	            StringBuffer sb = new StringBuffer("");
+	            String outStr;
+	            outStr = sb.toString();
+	            
+		           
+			    
+	            OutputStream out = child.getOutputStream();
+	            OutputStreamWriter writer =new OutputStreamWriter(out,"UTF-8");
+	            writer.write(outStr);
+	            writer.flush();
+	            
+	            out.flush();
+	            out.close();     
+	            br.close();     
+	            writer.close();  
+				
+				
+	          System.out.println("数据恢复成功！");
+   }
+ //启动备份任务
+ 	public static void startDbback(String dbpath, String hostName,String dataBase,String userName, 
+ 		   String passwd,String outFilePath)
+ 	{
+
+ 		TimerTask timerTask=new TimerTask() {
+ 			
+ 			@Override
+ 			public void run() {
+ 				// TODO Auto-generated method stub
+ 			try {
+				backupMysqlDatabase(dbpath, hostName, dataBase, userName, passwd, outFilePath);
+				System.out.println("备份成功！");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("备份失败！");
+			}
+ 			
+ 			}
+ 		};
+ 		int time=7*24*60*60*1000;
+      java.util.Timer timer=new java.util.Timer();
+      timer.schedule(timerTask, 0, time);
+      
+ 	}
+	   public static void main(String[]a)
+	   {
+//		   ServletActionContext.getRequest().getSession().getServletContext().getRealPath("/")
+		   String hostName ="192.168.26.200"; 
+		   String dataBase ="safe";//is 
+		   String userName ="root"; 
+		   String passwd ="wdy123654"; 
+		   String outFilePath ="D:/backupmysql.sql"; try { 
+//		   backupMysqlDatabase("11",hostName,dataBase, userName, passwd, outFilePath); 
+			  
+			   }catch (Exception e) {
+				// TODO: handle exception
+			   e.printStackTrace();
+			   }
+		   
+	   }
     
 }

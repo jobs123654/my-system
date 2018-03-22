@@ -29,6 +29,8 @@
 	<mapping class="com.entity.User" />
 	
 	<mapping class="com.entity.InsuranceExchange"/>
+	
+	<mapping class="com.entity.Classify"/>
 </session-factory>
 
 </hibernate-configuration>
