@@ -1,13 +1,16 @@
 package com.maven.dao;
 
 import com.maven.entity.Manager;
+import com.maven.entity.User;
 import com.maven.ifa.ManagerIfa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class ManagerDao {
     @Autowired
   private ManagerIfa managerIfa;
@@ -22,6 +25,11 @@ public class ManagerDao {
             }
         }
      return  null;
+    }
+
+    public void addManager (Manager manager)
+    {
+        managerIfa.save(manager);
     }
 
     public  boolean isUpdate(Manager m)

@@ -18,15 +18,15 @@ public class HttpAspect {
   private static  final  String BEFORE="execution(* com.maven.action.*.*(..))";
 
   @Before(BEFORE)
-   public  String before(JoinPoint joinPoint, HttpServletRequest request, HttpServletResponse response)
+   public  String before(JoinPoint joinPoint)
   {
       /*User user=(User)joinPoint.getArgs()[0];
       System.out.println("-------------before"+user.getUserName()+"  "+user.getUserPassword());*/
-    HttpSession session= request.getSession();
+    /*HttpSession session= request.getSession();
     if(session.getAttribute("man")!=null)
     {
      return "home";
-    }
+    }*/
      return "index";
   }
 

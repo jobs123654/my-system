@@ -7,6 +7,8 @@ import javax.naming.Name;
 import javax.persistence.*;
 import javax.sound.midi.Soundbank;
 import javax.validation.constraints.Max;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -24,19 +26,36 @@ public class DispatchList {
             9、经办人（登陆用户）
             10、办理日期（点选，需要判断一下，日期不能早于最后一个单据的日期）*/
             @Id
-            @GenericGenerator(name = "id",strategy = "assigned")
             @GeneratedValue(generator = "id")
-            @Column(unique = true)
+            @GenericGenerator(name = "id",strategy = "assigned")
+
+            @Column(unique = true,length = 8)
   private String id;
 
   private String dep;
 
-  @Max(value = 10)
+  @Override
+  public String toString() {
+    return "DispatchList{" +
+            "id='" + id + '\'' +
+            ", dep='" + dep + '\'' +
+            ", people='" + people + '\'' +
+            ", address='" + address + '\'' +
+            ", reason='" + reason + '\'' +
+            ", gotime='" + gotime + '\'' +
+            ", time=" + time +
+            ", length=" + length +
+            ", manager='" + manager + '\'' +
+            ", date='" + date + '\'' +
+            '}';
+  }
+
+
   private String people;
 
-  @Max(value = 50)
+
   private  String address;
-  @Max(value = 50)
+
   private  String reason;
 
   private  String gotime;
@@ -45,9 +64,9 @@ public class DispatchList {
 
   private float length;
 
-  private Manager manager;
+  private String manager;
 
-  private  String date;
+  private  String date=new SimpleDateFormat("yyyy/MM/dd HH:mm").format(new Date());
 
 
   public void setId(String id) {
@@ -116,11 +135,11 @@ public class DispatchList {
     this.length = length;
   }
 
-  public Manager getManager() {
+  public String getManager() {
     return manager;
   }
 
-  public void setManager(Manager manager) {
+  public void setManager(String manager) {
     this.manager = manager;
   }
 
