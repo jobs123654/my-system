@@ -170,7 +170,7 @@
 
 								<h4 class="lighter col-md-6">
 									<i class="icon-hand-right icon-animated-hand-pointer blue"></i>
-									<a href="#modal-wizard"  class="pink">结果详情页 </a>
+									<a href="#modal-wizard"  class="pink">结果详情页 <small>共有  <u th:text="${page.totalSize}"></u> 条记录</small> </a>
 								</h4>
 								<h4 class="lighter col-md-6">
 									<a href="search"  class="pink pull-right">返回 </a>
@@ -255,17 +255,22 @@
 															</form>
 
 
-															<!--<div class="row-fluid wizard-actions center" >
-																<button  class="btn btn-prev">
-																	<i class="icon-arrow-left"></i>
-																	提交
-																</button>
+															<div class="row-fluid wizard-actions center" >
 
-																<button id="pig" type="button" class="btn btn-success btn-next"  data-last="Finish ">
-																	打印
-																	<i class="icon-arrow-right icon-on-right"></i>
-																</button>
-															</div>-->
+
+
+																    <span><a class="btn" th:href="@{search1?cu=}+${cu-1}"><</a></span>
+
+
+                                                                    <a class="btn" th:href="@{search1?cu=}+${cu+1}">> </a>
+
+
+																<span class="blue" th:text="${page.current}"></span>/
+																<span class="blue" th:text="${page.totalPage}"></span>
+
+
+
+															</div>
 
 														</div>
 

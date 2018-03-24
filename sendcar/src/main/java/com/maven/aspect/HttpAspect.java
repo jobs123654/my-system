@@ -1,7 +1,7 @@
 package com.maven.aspect;
 
 import com.maven.entity.User;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Around;

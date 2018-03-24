@@ -15,7 +15,7 @@ public interface DispatchListIfa extends JpaRepository<DispatchList,String> {
 
    public List<DispatchList> findByManagerContains(String name);
 
-
+   public List<DispatchList> findByDepContains(String name);
 
   public List<DispatchList> findByManagerAndPeople(String manager,String people);
 

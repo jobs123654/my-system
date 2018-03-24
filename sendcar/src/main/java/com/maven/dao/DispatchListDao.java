@@ -42,7 +42,7 @@ public class DispatchListDao {
                    dispatchList.setId(getCustomId());
                    dispatchList.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
                }
-               System.out.println(dispatchList);
+//               System.out.println(dispatchList);
                dispatchListIfa.save(dispatchList);
            }catch(RollbackException e)
            {
@@ -70,16 +70,21 @@ public class DispatchListDao {
            if(dispatchList.getManager()!=null&&!dispatchList.getManager().equals(""))
            {
                   list=dispatchListIfa.findByManagerContains(dispatchList.getManager());
-               System.out.println("部门");
+//               System.out.println("部门");
            }
           else if(dispatchList.getPeople()!=null&&!dispatchList.getPeople().equals(""))
            {
                 list=dispatchListIfa.findByPeopleContains(dispatchList.getPeople());
-               System.out.println("随行人员");
-           }else{
+//               System.out.println("随行人员");
+           } else if(dispatchList.getDep()!=null&&!dispatchList.getDep().equals(""))
+           {
+               list=dispatchListIfa.findByDepContains(dispatchList.getDep());
+//               System.out.println("随行人员");
+           }
+           else{
 //               findByManagerAndPeople(dispatchList.getManager(),dispatchList.getPeople());
                list=dispatchListIfa.findAllByOrderByIdAsc();
-               System.out.println("全部");
+//               System.out.println("全部");
            }
 
 

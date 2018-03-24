@@ -231,6 +231,7 @@
 																	<div class="col-xs-12 col-sm-5">
 																		<span class="block input-icon input-icon-right">
 																			<input type="text" id="inputInfo" placeholder="部门名称" name="name" class="width-100" required />
+																			<input type="hidden" value="1"  name="cu" class="width-100" />
 
 																		</span>
 																	</div>
@@ -373,6 +374,24 @@
 															  </tbody>
 
 															</table>
+
+															<div class="row-fluid wizard-actions center" >
+
+
+
+																<span><a class="btn" th:href="@{setDep?cu=}+${cu-1}"><</a></span>
+
+
+																<a class="btn" th:href="@{setDep?cu=}+${cu+1}">> </a>
+
+
+																<span class="blue" th:text="${page.current}"></span>/
+																<span class="blue" th:text="${page.totalPage}"></span>
+
+
+
+															</div>
+
 
 														</div>
 

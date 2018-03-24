@@ -7,37 +7,27 @@ import com.maven.dao.UserDao;
 import com.maven.entity.Department;
 import com.maven.entity.DispatchList;
 import com.maven.entity.Manager;
-import com.maven.entity.User;
-import com.maven.ifa.DepartmentIfa;
-import com.maven.ifa.UserIfa;
-import com.maven.service.UserService;
 
+
+import com.maven.tool.PageHelper;
 import com.maven.tool.Tool;
-import com.sun.org.apache.regexp.internal.REUtil;
-import org.hibernate.validator.constraints.br.CPF;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
-import org.springframework.validation.annotation.Validated;
+
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.annotation.SessionScope;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
+import javax.websocket.server.PathParam;
+
 import java.io.*;
-import java.lang.reflect.Field;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
 @SessionAttributes(value = {"man"})
 @Controller
 //@RequestMapping(value = "/user")
@@ -153,7 +143,7 @@ public class ManagerAction extends BaseAction{
         }
         try {
 
-            System.out.println("----------------------------"+dispatchList);
+
 
             dispatchListDao.addOrUpdate(dispatchList);
             List<Department> list=departmentDao.findAll();
@@ -187,19 +177,32 @@ public class ManagerAction extends BaseAction{
         session.removeAttribute("man");
         return "index";
     }
+    private void loadData(Model model,int c)
+    {
+        List<Department> list=departmentDao.findAll();
+
+
+        PageHelper<Department> departmentPageHelper=new PageHelper<Department>(c,6,list);
+
+        model.addAttribute("list", departmentPageHelper.getResult());
+        model.addAttribute("page",departmentPageHelper );
+        model.addAttribute("cu",c );
+
+
+    }
 
     /*设置部门*/
     @RequestMapping("/setDep")
-    public String setDep(HttpServletRequest request, Department department,Model model)
+    public String setDep(@RequestParam(value = "cu" ,defaultValue = "1") int c, HttpServletRequest request, Department department,Model model)
     {
         HttpSession session=request.getSession();
-       loadData(model);
+
 
         if(department.getName()!=null){
           departmentDao.add(department);
 
-        }
-
+         }
+        loadData(model,c);
         return "add_department";
     }
 
@@ -209,7 +212,7 @@ public class ManagerAction extends BaseAction{
     {
         System.out.println(department);
         departmentDao.delete(department);
-            loadData(model);
+        loadData(model,1);
         return "add_department";
     }
 
@@ -221,14 +224,6 @@ public class ManagerAction extends BaseAction{
         model.addAttribute("list", list);
         return "show_dispatchlist";
     }
-
-
-    private void loadData(Model model)
-    {
-        List<Department> list=departmentDao.findAll();
-        model.addAttribute("list", list);
-    }
-
     /* 文件下载*/
     @RequestMapping("download")
     public String downLoad(HttpServletResponse response, HttpServletRequest request,DispatchList dispatchList){
@@ -270,16 +265,57 @@ public class ManagerAction extends BaseAction{
     }
     /*查询*/
     @RequestMapping("search")
-    public String search(Model model,DispatchList dispatchList)
+    public String search(Model model, DispatchList dispatchList)
     {
+
 
         if(dispatchList.getId()!=null&&!dispatchList.getId().equals(""))
         {
+
             List<DispatchList> list=dispatchListDao.getDispatchlistBySal(dispatchList);
-            model.addAttribute("list", list);
+            System.out.println(list.size());
+            PageHelper<DispatchList> pageHelper=new PageHelper<DispatchList>(1,7,list);
+            model.addAttribute("page", pageHelper);
+
+            model.addAttribute("list", pageHelper.getResult());
+            model.addAttribute("cu", 1);
             return "result_dispatchlist";
         }
          return "search";
     }
+    @RequestMapping("home")
+    public  String home()
+    {
+        return "home";
+    }
+
+    /*查询*/
+    @RequestMapping("search1")
+    public String search1(Model model, DispatchList dispatchList,  @RequestParam("cu") int c)
+    {
+
+
+
+            if((Object)c==null)
+            {
+                c=1;
+            }
+            int f=c==1?0:c;
+
+            List<DispatchList> list=dispatchListDao.getAll();
+            PageHelper<DispatchList> pageHelper=new PageHelper<DispatchList>(c,7,list);
+
+
+
+
+            model.addAttribute("list", pageHelper.getResult());
+            model.addAttribute("cu", c);
+            model.addAttribute("page", pageHelper);
+            return "result_dispatchlist";
+
+    }
+
+
+
 
 }

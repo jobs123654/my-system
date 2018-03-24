@@ -199,12 +199,15 @@
 
 
 						<div class="row">
-							<div class="col-xs-12">
+							<div class="col-md-12">
 								<!-- PAGE CONTENT BEGINS -->
 
-								<h4 class="lighter">
+								<h4 class="lighter col-md-6">
 									<i class="icon-hand-right icon-animated-hand-pointer blue"></i>
 									<a href="#modal-wizard" data-toggle="modal" class="pink">派车信息编辑 </a>
+								</h4>
+								<h4 class="lighter col-md-6">
+									<a href="search"  class="pink pull-right" onclick="history.back()">返回 </a>
 								</h4>
 
 								<div class="hr hr-18 hr-double dotted"></div>
@@ -227,6 +230,17 @@
 
 
 
+																<div class="form-group has-info">
+																	<label for="inputInfo" class="col-xs-12 col-sm-3 control-label no-padding-right">派车单号</label>
+
+																	<div class="col-xs-12 col-sm-5">
+																		<span class="block input-icon input-icon-right">
+																		<input type="text" readonly id="inputInfo"  name="id" class="width-100" th:value="*{id}"/>
+																			<i class="icon-info-sign"></i>
+																		</span>
+																	</div>
+
+																</div>
 
 																<div class="form-group has-info">
 																	<label for="inputInfo" class="col-xs-12 col-sm-3 control-label no-padding-right">用车部门</label>
@@ -249,6 +263,7 @@
 
 																	<div class="col-xs-12 col-sm-5">
 																		<span class="block input-icon input-icon-right">
+
 																			<input type="text" id="inputInfo" th:value="*{people}" placeholder="输入汉字最多10个" name="people" class="width-100" required />
 																			<i class="icon-info-sign"></i>
 																		</span>
