@@ -23,14 +23,14 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.server.PathParam;
+
 
 import java.io.*;
 
 import java.util.List;
 @SessionAttributes(value = {"man"})
 @Controller
-//@RequestMapping(value = "/user")
+
 public class ManagerAction extends BaseAction{
 
 
@@ -279,7 +279,8 @@ public class ManagerAction extends BaseAction{
 
             model.addAttribute("list", pageHelper.getResult());
             model.addAttribute("cu", 1);
-            return "result_dispatchlist";
+
+            return "result";
         }
          return "search";
     }
@@ -311,7 +312,7 @@ public class ManagerAction extends BaseAction{
             model.addAttribute("list", pageHelper.getResult());
             model.addAttribute("cu", c);
             model.addAttribute("page", pageHelper);
-            return "result_dispatchlist";
+            return "result";
 
     }
 

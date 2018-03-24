@@ -12,12 +12,12 @@ import java.util.List;
 @SpringBootApplication
 @EnableAutoConfiguration
 public class App extends SpringBootServletInitializer{
-    /*@Override
+    @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         // 注意这里要指向原先用main方法执行的Application启动类
         return builder.sources(App.class);
-    }*/
-    public static void main(String[]a)
+    }
+   public static void main(String[]a)
     {
         SpringApplication.run(App.class,a);
     }

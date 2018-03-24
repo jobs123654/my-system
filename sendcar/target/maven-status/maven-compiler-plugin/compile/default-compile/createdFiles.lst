@@ -1,12 +1,10 @@
-com\maven\action\AppAction.class
-com\maven\dao\ManagerDao.class
+com\maven\tool\PageHelper.class
 com\maven\action\ManagerAction.class
 com\maven\ifa\DispatchListIfa.class
 com\maven\dao\UserDao.class
 com\maven\entity\DispatchList.class
 com\maven\App.class
 com\maven\entity\Department.class
-com\maven\ifa\UserIfa.class
 com\maven\tool\Tool.class
 com\maven\ifa\DepartmentIfa.class
 com\maven\service\UserService.class
@@ -17,5 +15,4 @@ com\maven\aspect\HttpAspect.class
 com\maven\action\BaseAction.class
 com\maven\tool\Tool$1.class
 com\maven\ifa\ManagerIfa.class
-com\maven\dao\DispatchListDao.class
 com\maven\exception\ControllerException.class

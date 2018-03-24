@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Class-Path: spring-boot-starter-logging-1.5.3.RELEASE.jar spring-boot-
+ starter-data-jpa-1.5.3.RELEASE.jar spring-data-commons-1.13.3.RELEASE
+ .jar hibernate-validator-5.3.5.Final.jar javax.servlet-api-4.0.0.jar 
+ spring-boot-autoconfigure-1.5.3.RELEASE.jar jandex-2.0.0.Final.jar hi
+ bernate-commons-annotations-5.0.1.Final.jar spring-boot-starter-web-1
+ .5.3.RELEASE.jar aspectjweaver-1.8.10.jar spring-boot-starter-thymele
+ af-1.5.3.RELEASE.jar spring-context-4.3.8.RELEASE.jar thymeleaf-sprin
+ g4-3.0.2.RELEASE.jar classmate-1.3.3.jar commons-codec-1.10.jar javax
+ .transaction-api-1.2.jar xmlbeans-2.6.0.jar slf4j-api-1.7.25.jar atto
+ parser-2.0.1.RELEASE.jar spring-core-4.3.8.RELEASE.jar groovy-2.4.10.
+ jar thymeleaf-layout-dialect-2.1.1.jar tomcat-embed-websocket-8.5.14.
+ jar tomcat-embed-el-8.5.14.jar hibernate-jpa-2.1-api-1.0.0.Final.jar 
+ logback-classic-1.1.11.jar spring-orm-4.3.8.RELEASE.jar spring-boot-s
+ tarter-aop-1.5.3.RELEASE.jar spring-web-4.3.8.RELEASE.jar spring-boot
+ -starter-jdbc-1.5.3.RELEASE.jar stax-api-1.0.1.jar curvesapi-1.04.jar
+  spring-boot-starter-1.5.3.RELEASE.jar unbescape-1.1.4.RELEASE.jar sn
+ akeyaml-1.17.jar spring-webmvc-4.3.8.RELEASE.jar tomcat-embed-core-8.
+ 5.14.jar spring-boot-starter-tomcat-1.5.3.RELEASE.jar spring-boot-1.5
+ .3.RELEASE.jar javassist-3.21.0-GA.jar poi-ooxml-schemas-3.15-beta2.j
+ ar spring-boot-devtools-1.5.3.RELEASE.jar spring-expression-4.3.8.REL
+ EASE.jar spring-jdbc-4.3.8.RELEASE.jar jackson-annotations-2.8.0.jar 
+ jackson-core-2.8.8.jar antlr-2.7.7.jar poi-3.15-beta2.jar hibernate-e
+ ntitymanager-5.0.12.Final.jar spring-data-jpa-1.11.3.RELEASE.jar poi-
+ ooxml-3.15-beta2.jar jboss-logging-3.3.1.Final.jar log4j-over-slf4j-1
+ .7.25.jar tomcat-jdbc-8.5.14.jar mysql-connector-java-5.1.41.jar dom4
+ j-1.6.1.jar jul-to-slf4j-1.7.25.jar spring-aspects-4.3.8.RELEASE.jar 
+ jackson-databind-2.8.8.jar spring-tx-4.3.8.RELEASE.jar hibernate-core
+ -5.0.12.Final.jar jcl-over-slf4j-1.7.25.jar thymeleaf-3.0.2.RELEASE.j
+ ar tomcat-juli-8.5.14.jar spring-aop-4.3.8.RELEASE.jar thymeleaf-expr
+ ession-processor-1.1.2.jar validation-api-1.1.0.Final.jar logback-cor
+ e-1.1.11.jar spring-beans-4.3.8.RELEASE.jar
+Main-Class: com.maven.App
+
