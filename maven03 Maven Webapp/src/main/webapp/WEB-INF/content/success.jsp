@@ -21,14 +21,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
    <c:forEach var="i" items="${list }">
      <p>
-      <c:out value="${i.name}"></c:out>
+      <c:out value="${i.name}"></c:out><a href="ut?id=<c:out value="${i.id}"></c:out>">up</a><a href="del?id=<c:out value="${i.id}"></c:out>">del</a>
      </p>
    </c:forEach>
    <hr>
    <c:if test="${page.current!=1 }">
     <a href="page?c=<c:out value="${page.current -1}"></c:out>"> [pre]</a>
    </c:if>
-     <c:forEach begin="${page.start }" end="${page.stop}" var="i">
+     <c:forEach begin="${page.start}" end="${page.stop}" var="i">
       <a href="page?c=<c:out value="${i }"></c:out>">
       <c:out value="${i }"></c:out>
      </a>

@@ -13,13 +13,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="css/login.css" type="text/css" rel="stylesheet" />
 <script src="js/jquery-1.11.1.js"></script>
 <title>万众保险业务员端</title>
+<style type="text/css">
+#button,#register{
+  width: 70px
+}
+</style>
 </head>
 <body>
 <%
 User user=new User();
 Cookie []cookies=Tool.getHttpServletRequest().getCookies();
 
-if(cookies.length>0)
+if(cookies!=null&&cookies.length>0)
 {
 for(Cookie c:cookies)
 {
@@ -49,22 +54,26 @@ for(Cookie c:cookies)
   <tr>
     <td align="right">密码：</td>
     <td><input name="user.userPassword" type="password" value="<%=user.getUserPassword() ==null?"":user.getUserPassword() %>"  class="box_inp1"/></td>
-    <td><input name="user.isRemember" id="re" type="checkbox"  
-    style="float:left; display:inline; margin-top:9px; margin-right:3px"/>
-    &nbsp;记住密码</td>
+    
   </tr>
  
    
   <tr>
     <td>&nbsp;</td>
-    <td><input type="submit" name="button" id="button" value="提交" class="subbtm"/></td>
-     <td><input type="button" name="register" id="register" value="注册" class="subbtm"/></td>
-    <td>&nbsp;</td>
-     <td>&nbsp;</td>
+    <td >
+    <input type="submit" name="button" id="button" value="登录" class="subbtm" />&nbsp;
+    <input type="button" name="register" id="register" value="注册" class="subbtm"/></td>
+    
   </tr>
   <tr id="tish" style="display: none;">
   <td></td>
   <td>请持有效证件去现场办理</td>
+  </tr>
+  <tr>
+  <td>&nbsp;</td>
+  <td><input name="user.isRemember" id="re" type="checkbox"  
+    style="float:left; display:inline; margin-top:9px; margin-right:3px"/>
+    &nbsp;记住密码</td>
   </tr>
 </table>
       </form>

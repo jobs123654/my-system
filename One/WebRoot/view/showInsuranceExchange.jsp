@@ -95,6 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                    <th>创建时间</th>
                    <th>详情</th>
                      <th>更新</th>
+                      <th>下载</th>
            </thead>
            <tbody>
              <s:iterator value="list" id="item">
@@ -144,8 +145,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <td><s:property value="createTime"/></td>
                 
                  <td><a href="igetinsuranceExchangeInfo?insuranceExchange.id=<s:property value="id"/>"><span class="glyphicon glyphicon-hand-up" title="详情"></span></a></td>
-<td><a href="iupdate?insuranceExchange.id=<s:property value="id"/>"><span title="更新" class="glyphicon glyphicon-pencil"></span></a></td>
+<td><a href="iupdate?insuranceExchange.id=<s:property value="id"/>"><span  class="glyphicon glyphicon-pencil"></span></a></td>
 
+ 
+<td><a href="idownLoad?insuranceExchange.id=<s:property value="id"/>"><span  class="glyphicon glyphicon-download-alt"></span></a></td>
                  
                </tr>
              </s:iterator>

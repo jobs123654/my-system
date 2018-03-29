@@ -34,5 +34,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/mchange-commons-java-0.2.11.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/mysql-connector-java-5.1.44-bin.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/Page.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

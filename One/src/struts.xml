@@ -21,6 +21,7 @@
               <result name="config">/view/config.jsp</result>
               <result name="config1">/view/config1.jsp</result>
               <result name="success">/view/success.jsp</result>
+               
           </action>
           
            <action name="i*" method="{1}" class="com.action.InsuranceExchangeService">
@@ -28,7 +29,6 @@
                <result name="result">view/InsuranceExchangeResult.jsp</result>
               <result name="update">view/updateInsuranceExchange.jsp</result>
               <result name="info">view/InsuranceExchangeInfo.jsp</result>
-
            </action>
           
           <action name="c*" method="{1}" class="com.action.ClassifyAction">

@@ -2,9 +2,11 @@ package com.action;
 
 
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-
+import java.io.OutputStream;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +18,7 @@ import org.apache.struts2.util.Counter;
 import org.springframework.http.HttpRequest;
 
 import com.dao.UserDao;
+import com.entity.InsuranceExchange;
 import com.entity.User;
 import com.tool.MainLoad;
 import com.tool.Tool;
@@ -225,16 +228,7 @@ public class UserSerive extends BaseAction{
 	   return userList();
    }
    
-   public String getInfo()
-   {
-//	   try {
-////		response.getOutputStream().write((UserDao.getUser(user.getUseNumber())).toString().getBytes());
-//	} catch (IOException e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-//	}
-	   return NONE;
-   }
+  
 	
 //   退出
    public String logout()

@@ -9,6 +9,7 @@
 	<configs>
 		<config>WebRoot/WEB-INF/config-servlet.xml</config>
 		<config>src/spring.xml</config>
+		<config>src/main/webapp/WEB-INF/dispatcher-servlet.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

@@ -6,44 +6,87 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.Entity.BaseEntity;
+import com.Entity.User;
 
-public class BaseDao {
+public class BaseDao<T>{
 	@Autowired
-  private BaseEntity baseEntity;
+   private SessionFactory sessionFactory;
 	
-	@Autowired
-	private SessionFactory sessionFactory;
+	/**
+	 * @return the sessionFactory
+	 */
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+	private Session getSession(){
 	
-	private Session getSession()
-	 {
-		 return sessionFactory.openSession();
-	 }
-  public void add(BaseEntity baseEntity)
+		return sessionFactory.openSession();
+	}
+	/**
+	 * @param sessionFactory the sessionFactory to set
+	 */
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	private BaseEntity baseEntity;
+	
+ 
+	
+// HibernateDaoSupport
+public void save(BaseEntity baseEntity)
   {
-	  Transaction transaction=getSession().beginTransaction();
+	  Session s=getSession();
+	  Transaction transaction=s.beginTransaction();
+	  System.out.println(baseEntity.getClass());
+	  s.save(baseEntity);
 	  
-	  getSession().save(baseEntity);
+      transaction.commit();
 	  
-	  transaction.commit();
-	  
-	  getSession().close();
+	 s.close();
   }
   public void update(BaseEntity baseEntity)
   {
-	  
+	  Session s=getSession();
+	  Transaction transaction=s.beginTransaction();
+	  System.out.println(baseEntity.getClass());
+	  s.saveOrUpdate(baseEntity);
+      transaction.commit();
+	 s.close();
   }
   public void delete(BaseEntity baseEntity)
   {
-      Transaction transaction=getSession().beginTransaction();
-	  getSession().delete(baseEntity); 
-	  transaction.commit();
-	  getSession().close();
+	  Session s=getSession();
+	  Transaction transaction=s.beginTransaction();
+	  s.delete(baseEntity);
+      transaction.commit();
+	  
+	 s.close();
   }
-  public List<BaseEntity> findAll(String  name)
+  public List<?> findAll(String  name)
   {
-	  return getSession().createQuery("from"+name).list();
+  return getSession().createQuery("from  "+name).list();
   }
+  
+  public BaseEntity getBaseEntity(User user)
+  {
+	  baseEntity=user;
+	  return getSession().get(baseEntity.getClass(), user.getId());
+  }
+/**
+ * @return the baseEntity
+ */
+public BaseEntity getBaseEntity() {
+	return baseEntity;
+}
+/**
+ * @param baseEntity the baseEntity to set
+ */
+public void setBaseEntity(BaseEntity baseEntity) {
+	this.baseEntity = baseEntity;
+}
   
 }

@@ -208,7 +208,7 @@ public class Tool {
       {
     		output = new FileOutputStream( path+(InsuranceExchangeDao.getList().size()+1)+".xls");
       }else{
-    		output = new FileOutputStream( path+insuranceExchange.getId()+".xls");
+    		output = new FileOutputStream( path+(insuranceExchange.getId()-1)+".xls");
       }
  	} catch (FileNotFoundException e1) {
  		// TODO Auto-generated catch block

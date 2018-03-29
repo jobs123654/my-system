@@ -66,12 +66,20 @@
      </bean>
      <!--  基于事务的注解-->
       <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    
       <!-- 业务bean -->
-        <bean id="userDao" class="com.Dao.UserDao">
-        <property name="sessionFactory" ref="sessionFactory"></property>
-       </bean>
+       
+        <bean id="baseDao" class="com.Dao.BaseDao">
+           <property name="sessionFactory" ref="sessionFactory"></property>
+        </bean>
+        
+         <!--  <bean id="userDao" class="com.Dao.UserDao">
+          
+        </bean> -->
+        
        <bean id="userService" class="com.Service.UserService">
-	   <property name="dao" ref="userDao"></property>
+	   <property name="dao" ref="baseDao"></property>
         </bean>
        
        <bean id="userAction" class="com.Action.UserAction">

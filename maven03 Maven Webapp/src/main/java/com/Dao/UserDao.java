@@ -11,30 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.Entity.User;
 @Transactional
-public class UserDao {
+public class UserDao extends BaseDao{
 	
-   /**
-	 * @return the sessionFactory
-	 */
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-	
-	/**
-	 * @param sessionFactory the sessionFactory to set
-	 */
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-	
-	 private Session getSession()
-	 {
-		 return sessionFactory.openSession();
-	 }
-	
-   @Autowired
-   private SessionFactory sessionFactory;
-   
+  
    
    public UserDao()
    {
@@ -42,27 +21,31 @@ public class UserDao {
 	}
    public List<User> findAll()
    {
-	   return getSession().createQuery("from User").list();
+//	   return getSession().createQuery("from User").list();
+	   return null;
    }
    public void add(User user)
    {
 	   
-	   Session session=getSession();
+	   /*Session session=getSession();
 	   Transaction transaction=session.beginTransaction();
 	   session.save(user);
 	   transaction.commit();
-	   session.close();
+	   session.close();*/
+	   save(user);
 	   
    }
    public void delete(User user)
    {
 	   
-	   Session session=getSession();
+	   /*Session session=getSession();
 	   User user1=(User) session.get(User.class, user.getId());
 	   Transaction transaction=session.beginTransaction();
 	   session.delete(user1);
 	   transaction.commit();
 	   session.close();
+	   */
+	   delete(user);
 	   
    }
    public void update(User user)

@@ -62,20 +62,23 @@ public class UserDao extends BaseDao{
 //查找用户 通过 工号密码
 	public static User getUser(User u)
 	{
-		
-			for(User user:getList())
+		//http://10.128.121.109:8080/safeweb
+			if(getList().size()>0)
 			{
-				
-				try {
-					if(user.getUseNumber().equals(u.getUseNumber())&&user.getUserPassword().equals(Tool.encryptSHA(u.getUserPassword())))
-					{
-						return user;
+				for(User user:getList())
+				{
+					
+					try {
+						if(user.getUseNumber().equals(u.getUseNumber())&&user.getUserPassword().equals(Tool.encryptSHA(u.getUserPassword())))
+						{
+							return user;
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		}
+			}
+			}
 		return null;
 	}
 	@SuppressWarnings("unchecked")

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <title>Title</title>
+    <style>
+        table{
+            margin: 13% 35%;
+        }
+        #show{
+            width: 400px;
+            border:2px solid grey;
+            height: 40px;
+            font-size: 2em  ;
+            font-weight: 400px;
+        }
+        td{
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            line-height: 50px;
+            font:  1.7em italic;
+            width: 100px;
+            vertical-align: center;
+            text-align: center;
+        }
+    </style>
+    <script>
+
+        window.onload=function () {
+            var t="";
+           var x='',l="+-*/%",y='',oper='',isN=false;
+             function getResult(a,oper,b) {
+                 var result=null,feg=null;
+
+                 switch (oper)
+                 {
+                     case '-':
+                      return  a-b;
+                         break;
+                     case '+':
+                        result= a+b;
+                         break;
+                     case '*':
+                         result=a*b;
+                         break;
+                     case '/':
+                         if(a==='0'||b==='0')
+                         {
+                             t='';
+                             return false;
+                         }
+                         result=a/b;
+                         break;
+                     case '%':
+                         result=a%b;
+                         break;
+                 }
+                 return result;
+             }
+            var item=document.getElementsByTagName('td');
+            for(var i in item)
+            {
+                var o=item[i];
+                o.onclick=function () {
+
+                    var show=document.getElementById("show");
+
+                    t+=this.innerHTML;
+                    if(t.indexOf('=')>0)
+                    {
+                        show.value=t.split('=')[(t.split('=')).length-1];
+                    }else{
+                        show.value=t;
+                    }
+
+                    if(l.indexOf(this.innerHTML)<0)
+                    {
+
+                        if(isN)
+                        {
+                            x+=this.innerHTML;
+
+                            return;
+                        }
+                        y+=this.innerHTML;
+                    }else{
+                       if(x!==''&&y!=='')
+                       {
+                           var g='';
+                           // console.log(" X:"+x+" "+ oper+"  Y: "+y);
+                           if(y<x&&oper!=='+'&&oper!=='*')
+                           {
+
+                               y*=(-1);
+                               x*=(-1);
+                           }else{
+                               g=y;y=x;x=g;
+                           }
+
+                           t=getResult(parseFloat(x),oper,parseFloat(y));
+                           show.value=t;
+                           y=getResult(parseFloat(x),oper,parseFloat(y));
+
+                           x='';
+                           oper='';
+
+                       }
+                        oper=this.innerHTML;
+                        isN=true;
+                    }
+
+                }
+            }
+            window.onkeydown=function (e) {
+                if(e.keyCode==32)
+                {
+                    x='';y='';isN=false;document.getElementById("show").value='';
+                    t='';
+                }
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+<table>
+    <caption>
+        <input type="text" id="show" multiple="true" placeholder="按空格清空" />
+    </caption>
+
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>+</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>-</td>
+
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td>*</td>
+    </tr>
+    <tr>
+        <td>0</td>
+        <td>%</td>
+        <td>.</td>
+        <td>/</td>
+    </tr>
+</table>
+
+</body>
+</html>

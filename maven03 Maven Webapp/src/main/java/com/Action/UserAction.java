@@ -1,5 +1,7 @@
 package com.Action;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,10 +31,7 @@ public class UserAction {
         @RequestMapping("/login")
 		public String login(Model model,User user)
 	   {
-        	
-//        	ComboPooledDataSource
-//        	DriverManagerDataSource
-         service.add(user);
+         service.add(user); 
 		 Page<User> page=new Page<User>(1,2, service.getAll());
 		 
          model.addAttribute("list",page.getResult());
@@ -49,6 +48,28 @@ public class UserAction {
              model.addAttribute("page",page);
         	return SUCCESS;
         }
+        @RequestMapping("/ut")
+        public String ut(Model model,User user)
+        {
+        	User user4=user;
+        	
+            if(user.getName()!=null&&!user.getName().equals(""))
+            {
+            	service.update(user);
+            	return SUCCESS;	
+            }
+            User user2=service.getUser(user);
+            model.addAttribute("user",user2 );
+          return "update";
+        	
+        }
+        @RequestMapping("/del")
+        public String del(Model model,User user)
+        {
+        	service.delete(user);
+          return SUCCESS;
+        	
+        }
 	   	/**
 		 * @return the service
 		 */
@@ -61,6 +82,7 @@ public class UserAction {
 		public void setService(UserService service) {
 			this.service = service;
 		}
+		
 		public String register()
 		{
 	   		
