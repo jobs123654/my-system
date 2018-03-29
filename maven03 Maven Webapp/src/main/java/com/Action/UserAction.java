@@ -70,9 +70,7 @@ public class UserAction {
           return SUCCESS;
         	
         }
-	   	/**
-		 * @return the service
-		 */
+	 
 		public UserService getService() {
 			return service;
 		}
