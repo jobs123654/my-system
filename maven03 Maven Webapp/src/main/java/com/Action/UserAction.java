@@ -74,9 +74,7 @@ public class UserAction {
 		public UserService getService() {
 			return service;
 		}
-		/**
-		 * @param service the service to set
-		 */
+	
 		public void setService(UserService service) {
 			this.service = service;
 		}
