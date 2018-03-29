@@ -9,7 +9,7 @@ import com.Dao.BaseDao;
 import com.Dao.UserDao;
 import com.Entity.BaseEntity;
 import com.Entity.User;
-@Service
+@Service(value="service")
 public class UserService {
  @Autowired
  private BaseDao dao;

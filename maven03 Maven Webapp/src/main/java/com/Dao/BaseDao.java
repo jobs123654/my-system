@@ -8,10 +8,11 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+import org.springframework.stereotype.Component;
 
 import com.Entity.BaseEntity;
 import com.Entity.User;
-
+@Component("dao") 
 public class BaseDao<T>{
 	@Autowired
    private SessionFactory sessionFactory;
