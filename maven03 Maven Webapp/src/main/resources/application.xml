@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+
+
+   
+  
+     
+     <!--  <context:component-scan base-package="com.Action"></context:component-scan> -->
+      <!-- 配置数据源 -->
+      
+     <bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+       <property name="username" value="root"></property>
+       <property name="password" value="wdy123654"></property>
+       
+       <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+       
+       <property name="url" value="jdbc:mysql://localhost:3306/safe"></property>
+      
+       
+       
+      </bean>
+      
+     
+       <bean id="dog" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+	       <property name="user" value="root"></property>
+	       <property name="password" value="wdy123654"></property>
+	       <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+	       <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/safe"></property>
+	 
+	 
+	     </bean>
+      
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+	
+	
+	 <property name="dataSource"  ref="datasource">
+	     
+	 </property>
+	 <property name="packagesToScan">
+	   <list>
+	     <value>com.Entity</value>
+	   </list>
+	 </property>
+	 
+	 <property name="hibernateProperties">
+	  <props>
+	 <prop key="hibernate.hbm2ddl.auto" >create</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+	  </props>
+	 </property>
+     </bean>
+       <!--配置事务管理器  -->
+      <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+      <property name="sessionFactory"  ref="sessionFactory"></property>
+     </bean>
+     <!--  基于事务的注解-->
+      <tx:annotation-driven transaction-manager="transactionManager"/>
+      <!-- 业务bean -->
+        <bean id="userDao" class="com.Dao.UserDao">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+       </bean>
+       <bean id="userService" class="com.Service.UserService">
+	   <property name="dao" ref="userDao"></property>
+        </bean>
+       
+       <bean id="userAction" class="com.Action.UserAction">
+        <property name="service" ref="userService"></property>
+       </bean>
+     
+</beans>
