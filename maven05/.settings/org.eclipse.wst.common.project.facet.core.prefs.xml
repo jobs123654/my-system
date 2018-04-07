@@ -1,0 +1,7 @@
+<root>
+  <facet id="java"/>
+  <facet id="maven"/>
+  <facet id="jpt.jpa"/>
+  <facet id="me.spring"/>
+  <facet id="jst.web.xdoclet"/>
+</root>

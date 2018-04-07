@@ -1,0 +1,53 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app id="WebApp_1522116411044">
+  <display-name>maven03</display-name>
+  
+  <welcome-file-list>
+     <welcome-file>index.html</welcome-file>
+     <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <context-param>  
+        <param-name>contextConfigLocation</param-name>  
+        <param-value>  
+            classpath:application.xml
+            <!-- classpath*:config/spring/local/appcontext-*.xml,  
+            classpath*:config/spring/local/emidas-activity-biz-*.xml,  
+            classpath*:config/spring/local/emidas-activity-web-*.xml   -->
+        </param-value>  
+    </context-param>  
+  
+    <listener>  
+     
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
+    </listener>
+    
+  <filter>
+        <filter-name>SpringCharacterEncoding</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>SpringCharacterEncoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+   <servlet>
+   <servlet-name>dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+      
+   </servlet>
+   <servlet-mapping>
+    <servlet-name>dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
+   </servlet-mapping>
+</web-app>

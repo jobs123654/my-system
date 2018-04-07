@@ -29,7 +29,7 @@ private String useNumber;//工号
  private String userNumber;//电话
  
  private int role;//权限默认为普通员工
- 
+   
  
  public int getRole() {
 	return role;
@@ -68,11 +68,6 @@ public void setUserSex(int userSex) {
 public void setUserName(String userName) {
 	this.userName = userName;
 }
-
-
-
-
-
 public String getUserNumber() {
 	return userNumber;
 }

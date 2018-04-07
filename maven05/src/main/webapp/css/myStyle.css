@@ -1,0 +1,14 @@
+th,td{
+
+	text-align: center;
+}
+.footer{
+	width: 100%;
+	position: fixed;
+	top: 90%
+}
+.img{
+	
+	width:60px;
+	height:60px;
+}

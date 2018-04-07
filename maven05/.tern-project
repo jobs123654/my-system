@@ -1,0 +1,19 @@
+{
+  "plugins": {
+    "guess-types": {
+      
+    },
+    "angular1": {
+      
+    },
+    "browser-extension": {
+      
+    }
+  },
+  "libs": [
+    "ecma5",
+    "browser",
+    "jquery"
+  ],
+  "ecmaVersion": 6
+}

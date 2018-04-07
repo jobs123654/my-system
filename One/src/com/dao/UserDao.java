@@ -63,7 +63,8 @@ public class UserDao extends BaseDao{
 	public static User getUser(User u)
 	{
 		//http://10.128.121.109:8080/safeweb
-			if(getList().size()>0)
+		List<User> l=getList();
+			if(l!=null&&l.size()>0)
 			{
 				for(User user:getList())
 				{
